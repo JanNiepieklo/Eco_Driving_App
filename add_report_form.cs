@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Eco_Driving_App
 {
-    public partial class Form1 : Form
+    public partial class add_report_form : Form
     {
-        public Form1()
+        public add_report_form()
         {
             InitializeComponent();
         }
