@@ -16,5 +16,10 @@ namespace Eco_Driving_App
         {
             InitializeComponent();
         }
+
+        private void add_report_form_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
