@@ -33,8 +33,13 @@ namespace Eco_Driving_App
             {
                 if(MessageBox.Show("na pewno?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                 {
-                    command = new SqlCommand("INSERT INTO [Table](Id,paliwo)VALUES(1,@paliwo)", connect);
+                    command = new SqlCommand("INSERT INTO [Tankowaniee](Id,zatankowane,zaplacone,przebieg,paliwo,data,dopelna)VALUES(3,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna)", connect);
+                    command.Parameters.AddWithValue("@zatankowane", txtzatankowane.Text);
+                    command.Parameters.AddWithValue("@zaplacone", txtzaplacone.Text);
+                    command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
                     command.Parameters.AddWithValue("@paliwo", cbpaliwo.Text);
+                    command.Parameters.AddWithValue("@data", dtdata.Value);
+                    command.Parameters.AddWithValue("@dopelna", cbdopelna.Checked);
                     connect.Open();
                     command.ExecuteNonQuery();
                     connect.Close();
