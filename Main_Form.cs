@@ -31,5 +31,11 @@ namespace Eco_Driving_App
         {
 
         }
+
+        private void button_reports_Click(object sender, EventArgs e)
+        {
+            add_report_form report = new add_report_form();
+            report.ShowDialog();
+        }
     }
 }

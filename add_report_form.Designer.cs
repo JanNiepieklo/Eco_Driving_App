@@ -30,21 +30,23 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtzatankowane = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtzaplacone = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtprzebieg = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dtdata = new System.Windows.Forms.DateTimePicker();
+            this.btndodaj = new System.Windows.Forms.Button();
+            this.btnwyczysc = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbdopelna = new System.Windows.Forms.CheckBox();
+            this.cbpaliwo = new System.Windows.Forms.ComboBox();
+            this.btnanuluj = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,13 +68,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Ilość zatankowanego paliwa:";
             // 
-            // textBox1
+            // txtzatankowane
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(273, 325);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(215, 29);
-            this.textBox1.TabIndex = 2;
+            this.txtzatankowane.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtzatankowane.Location = new System.Drawing.Point(273, 325);
+            this.txtzatankowane.Name = "txtzatankowane";
+            this.txtzatankowane.Size = new System.Drawing.Size(215, 29);
+            this.txtzatankowane.TabIndex = 2;
             // 
             // label2
             // 
@@ -94,13 +96,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "litrów";
             // 
-            // textBox2
+            // txtzaplacone
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.Location = new System.Drawing.Point(273, 375);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(215, 29);
-            this.textBox2.TabIndex = 5;
+            this.txtzaplacone.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtzaplacone.Location = new System.Drawing.Point(273, 375);
+            this.txtzaplacone.Name = "txtzaplacone";
+            this.txtzaplacone.Size = new System.Drawing.Size(215, 29);
+            this.txtzaplacone.TabIndex = 5;
             // 
             // label4
             // 
@@ -122,13 +124,13 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Przebieg:";
             // 
-            // textBox3
+            // txtprzebieg
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox3.Location = new System.Drawing.Point(273, 425);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(215, 29);
-            this.textBox3.TabIndex = 8;
+            this.txtprzebieg.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtprzebieg.Location = new System.Drawing.Point(273, 425);
+            this.txtprzebieg.Name = "txtprzebieg";
+            this.txtprzebieg.Size = new System.Drawing.Size(215, 29);
+            this.txtprzebieg.TabIndex = 8;
             // 
             // label6
             // 
@@ -160,41 +162,43 @@
             this.label8.TabIndex = 11;
             this.label8.Text = "Data tankowania:";
             // 
-            // dateTimePicker1
+            // dtdata
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(273, 525);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(324, 30);
-            this.dateTimePicker1.TabIndex = 12;
+            this.dtdata.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dtdata.Location = new System.Drawing.Point(273, 525);
+            this.dtdata.Name = "dtdata";
+            this.dtdata.Size = new System.Drawing.Size(324, 30);
+            this.dtdata.TabIndex = 12;
             // 
-            // button1
+            // btndodaj
             // 
-            this.button1.BackColor = System.Drawing.Color.LimeGreen;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(620, 566);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 41);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Dodaj";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btndodaj.BackColor = System.Drawing.Color.LimeGreen;
+            this.btndodaj.FlatAppearance.BorderSize = 0;
+            this.btndodaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btndodaj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btndodaj.ForeColor = System.Drawing.Color.White;
+            this.btndodaj.Location = new System.Drawing.Point(498, 590);
+            this.btndodaj.Name = "btndodaj";
+            this.btndodaj.Size = new System.Drawing.Size(118, 41);
+            this.btndodaj.TabIndex = 13;
+            this.btndodaj.Text = "Dodaj";
+            this.btndodaj.UseVisualStyleBackColor = false;
+            this.btndodaj.Click += new System.EventHandler(this.btndodaj_Click);
             // 
-            // button2
+            // btnwyczysc
             // 
-            this.button2.BackColor = System.Drawing.Color.Tomato;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(769, 566);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(118, 41);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Wyczyść";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnwyczysc.BackColor = System.Drawing.Color.Tomato;
+            this.btnwyczysc.FlatAppearance.BorderSize = 0;
+            this.btnwyczysc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnwyczysc.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnwyczysc.ForeColor = System.Drawing.Color.White;
+            this.btnwyczysc.Location = new System.Drawing.Point(633, 590);
+            this.btnwyczysc.Name = "btnwyczysc";
+            this.btnwyczysc.Size = new System.Drawing.Size(118, 41);
+            this.btnwyczysc.TabIndex = 14;
+            this.btnwyczysc.Text = "Wyczyść";
+            this.btnwyczysc.UseVisualStyleBackColor = false;
+            this.btnwyczysc.Click += new System.EventHandler(this.btnwyczysc_Click);
             // 
             // label9
             // 
@@ -206,37 +210,67 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "Tankowanie do pełna:";
             // 
-            // checkBox1
+            // cbdopelna
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox1.Location = new System.Drawing.Point(273, 576);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(54, 27);
-            this.checkBox1.TabIndex = 16;
-            this.checkBox1.Text = "Tak";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbdopelna.AutoSize = true;
+            this.cbdopelna.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbdopelna.Location = new System.Drawing.Point(273, 576);
+            this.cbdopelna.Name = "cbdopelna";
+            this.cbdopelna.Size = new System.Drawing.Size(54, 27);
+            this.cbdopelna.TabIndex = 16;
+            this.cbdopelna.Text = "Tak";
+            this.cbdopelna.UseVisualStyleBackColor = true;
+            // 
+            // cbpaliwo
+            // 
+            this.cbpaliwo.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbpaliwo.FormattingEnabled = true;
+            this.cbpaliwo.Items.AddRange(new object[] {
+            "Benzyna",
+            "Olej Napędowy",
+            "LPG"});
+            this.cbpaliwo.Location = new System.Drawing.Point(273, 475);
+            this.cbpaliwo.Name = "cbpaliwo";
+            this.cbpaliwo.Size = new System.Drawing.Size(215, 31);
+            this.cbpaliwo.TabIndex = 17;
+            // 
+            // btnanuluj
+            // 
+            this.btnanuluj.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnanuluj.FlatAppearance.BorderSize = 0;
+            this.btnanuluj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnanuluj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnanuluj.ForeColor = System.Drawing.Color.White;
+            this.btnanuluj.Location = new System.Drawing.Point(768, 590);
+            this.btnanuluj.Name = "btnanuluj";
+            this.btnanuluj.Size = new System.Drawing.Size(118, 41);
+            this.btnanuluj.TabIndex = 18;
+            this.btnanuluj.Text = "Anuluj";
+            this.btnanuluj.UseVisualStyleBackColor = false;
+            this.btnanuluj.Click += new System.EventHandler(this.btnanuluj_Click);
             // 
             // add_report_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 643);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.btnanuluj);
+            this.Controls.Add(this.cbpaliwo);
+            this.Controls.Add(this.cbdopelna);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.btnwyczysc);
+            this.Controls.Add(this.btndodaj);
+            this.Controls.Add(this.dtdata);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtprzebieg);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtzaplacone);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtzatankowane);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "add_report_form";
@@ -252,20 +286,22 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtzatankowane;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtzaplacone;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtprzebieg;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DateTimePicker dtdata;
+        private System.Windows.Forms.Button btndodaj;
+        private System.Windows.Forms.Button btnwyczysc;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbdopelna;
+        private System.Windows.Forms.ComboBox cbpaliwo;
+        private System.Windows.Forms.Button btnanuluj;
     }
 }

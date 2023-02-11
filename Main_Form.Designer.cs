@@ -97,6 +97,7 @@
             this.button_reports.TabIndex = 2;
             this.button_reports.Text = "Dodaj raport spalania";
             this.button_reports.UseVisualStyleBackColor = false;
+            this.button_reports.Click += new System.EventHandler(this.button_reports_Click);
             // 
             // button_cars
             // 
