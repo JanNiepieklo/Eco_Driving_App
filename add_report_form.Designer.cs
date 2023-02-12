@@ -227,7 +227,7 @@
             this.cbpaliwo.FormattingEnabled = true;
             this.cbpaliwo.Items.AddRange(new object[] {
             "Benzyna",
-            "Olej Napędowy",
+            "Diesel",
             "LPG"});
             this.cbpaliwo.Location = new System.Drawing.Point(273, 475);
             this.cbpaliwo.Name = "cbpaliwo";
