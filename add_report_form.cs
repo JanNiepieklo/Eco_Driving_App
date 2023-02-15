@@ -15,7 +15,8 @@ namespace Eco_Driving_App
     {
         SqlConnection connect = new SqlConnection();
         SqlCommand command = new SqlCommand();
-        SQL_connect sqlcon = new SQL_connect(); 
+        SQL_connect sqlcon = new SQL_connect();
+        SqlDataReader czytaj;
         public add_report_form()
         {
             InitializeComponent();
@@ -34,8 +35,8 @@ namespace Eco_Driving_App
                 if(MessageBox.Show("na pewno?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                 {
                     command = new SqlCommand("INSERT INTO [Tankowanieee](zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena)VALUES(@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena)", connect);
-                    command.Parameters.AddWithValue("@zatankowane", txtzatankowane.Text);
-                    command.Parameters.AddWithValue("@zaplacone", txtzaplacone.Text);
+                    command.Parameters.AddWithValue("@zatankowane", Convert.ToDouble(txtzatankowane.Text));
+                    command.Parameters.AddWithValue("@zaplacone", Convert.ToDouble(txtzaplacone.Text));
                     command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
                     command.Parameters.AddWithValue("@paliwo", cbpaliwo.Text);
                     command.Parameters.AddWithValue("@data", dtdata.Value);
@@ -46,6 +47,7 @@ namespace Eco_Driving_App
                     connect.Close();
                     MessageBox.Show("gitarson");
                     Clear();
+                    pokazraport();
                 }
             }
             catch (Exception ex)
@@ -64,12 +66,32 @@ namespace Eco_Driving_App
         {
 
         }
-
-        #region Method
+        
         public void Clear()
         {
+            txtzatankowane.Clear();
+            txtzaplacone.Clear();
             txtprzebieg.Clear();
+            txtprzebieg.Clear();
+            cbpaliwo.SelectedIndex = 0;
+            dtdata.Value = DateTime.Now;
+            cbdopelna.Checked = false;
         }
-        #endregion Method
+
+        public void pokazraport()
+        {
+            int i = 0;
+            dgvraporty.Rows.Clear();
+            command = new SqlCommand("SELECT * FROM Tankowanieee WHERE CONCAT(zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena) LIKE '%" + txtprzebieg.Text + "%'", connect);
+            connect.Open();
+            czytaj = command.ExecuteReader();
+            while(czytaj.Read())
+            {
+                i++;
+                dgvraporty.Rows.Add(i, czytaj[0].ToString(), czytaj[1].ToString(), czytaj[2].ToString(), czytaj[3].ToString(), czytaj[4].ToString(), czytaj[5].ToString(), czytaj[6].ToString());
+            }
+            czytaj.Close();
+            connect.Close();
+        }
     }
 }

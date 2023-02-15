@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvraporty = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtzatankowane = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,16 +47,16 @@
             this.cbdopelna = new System.Windows.Forms.CheckBox();
             this.cbpaliwo = new System.Windows.Forms.ComboBox();
             this.btnanuluj = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvraporty)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvraporty
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(875, 289);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvraporty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvraporty.Location = new System.Drawing.Point(12, 12);
+            this.dgvraporty.Name = "dgvraporty";
+            this.dgvraporty.Size = new System.Drawing.Size(875, 289);
+            this.dgvraporty.TabIndex = 0;
             // 
             // label1
             // 
@@ -272,11 +272,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtzatankowane);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvraporty);
             this.Name = "add_report_form";
             this.Text = "add_report";
             this.Load += new System.EventHandler(this.add_report_form_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvraporty)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,7 +284,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvraporty;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtzatankowane;
         private System.Windows.Forms.Label label2;
