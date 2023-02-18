@@ -57,6 +57,7 @@
             this.dgvraporty.Name = "dgvraporty";
             this.dgvraporty.Size = new System.Drawing.Size(875, 289);
             this.dgvraporty.TabIndex = 0;
+            this.dgvraporty.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvraporty_CellContentClick);
             // 
             // label1
             // 

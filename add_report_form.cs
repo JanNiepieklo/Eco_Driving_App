@@ -8,19 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms.VisualStyles;
 
 namespace Eco_Driving_App
 {
     public partial class add_report_form : Form
     {
+        
         SqlConnection connect = new SqlConnection();
         SqlCommand command = new SqlCommand();
         SQL_connect sqlcon = new SQL_connect();
-        SqlDataReader czytaj;
         public add_report_form()
         {
             InitializeComponent();
             connect = new SqlConnection(sqlcon.connection());
+            pokazraport();
         }
 
         private void add_report_form_Load(object sender, EventArgs e)
@@ -34,7 +36,8 @@ namespace Eco_Driving_App
             {
                 if(MessageBox.Show("na pewno?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                 {
-                    command = new SqlCommand("INSERT INTO [Tankowanieee](zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena)VALUES(@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena)", connect);
+                    command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena)VALUES(@wlasciciel,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena)", connect);
+                    command.Parameters.AddWithValue("@wlasciciel", "user1");
                     command.Parameters.AddWithValue("@zatankowane", Convert.ToDouble(txtzatankowane.Text));
                     command.Parameters.AddWithValue("@zaplacone", Convert.ToDouble(txtzaplacone.Text));
                     command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
@@ -77,21 +80,24 @@ namespace Eco_Driving_App
             dtdata.Value = DateTime.Now;
             cbdopelna.Checked = false;
         }
-
         public void pokazraport()
         {
-            int i = 0;
-            dgvraporty.Rows.Clear();
-            command = new SqlCommand("SELECT * FROM Tankowanieee WHERE CONCAT(zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena) LIKE '%" + txtprzebieg.Text + "%'", connect);
-            connect.Open();
-            czytaj = command.ExecuteReader();
-            while(czytaj.Read())
-            {
-                i++;
-                dgvraporty.Rows.Add(i, czytaj[0].ToString(), czytaj[1].ToString(), czytaj[2].ToString(), czytaj[3].ToString(), czytaj[4].ToString(), czytaj[5].ToString(), czytaj[6].ToString());
-            }
-            czytaj.Close();
-            connect.Close();
+            dgvraporty.DataSource = getraporty();
+            DataGridViewTextBoxColumn textColumn = new DataGridViewTextBoxColumn();
+            textColumn = (DataGridViewTextBoxColumn)dgvraporty.Columns[1];
+        }
+        public DataTable getraporty()
+        {
+            SqlCommand command2 = new SqlCommand("SELECT * FROM Tankowanie", connect);
+            SqlDataAdapter adapter = new SqlDataAdapter(command2);
+            DataTable tabela = new DataTable();
+            adapter.Fill(tabela);
+            return tabela;
+        }
+
+        private void dgvraporty_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
