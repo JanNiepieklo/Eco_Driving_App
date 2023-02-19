@@ -18,6 +18,7 @@ namespace Eco_Driving_App
         SqlConnection connect = new SqlConnection();
         SqlCommand command = new SqlCommand();
         SQL_connect sqlcon = new SQL_connect();
+        string a;
         public login_form()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace Eco_Driving_App
                 Main_Form main = new Main_Form();
                 this.Hide();
                 main.Show();
+                a = login;
             }
             else
             {
@@ -80,6 +82,10 @@ namespace Eco_Driving_App
                 MessageBox.Show(ex.Message);
                 throw;
             }
+        }
+        public string zalogowany()
+        {
+            return a;
         }
     }
 }

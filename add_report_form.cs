@@ -32,12 +32,13 @@ namespace Eco_Driving_App
 
         private void btndodaj_Click(object sender, EventArgs e)
         {
+            login_form login = new login_form();
             try
             {
                 if(MessageBox.Show("na pewno?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                 {
                     command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena)VALUES(@wlasciciel,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena)", connect);
-                    command.Parameters.AddWithValue("@wlasciciel", "user1");
+                    command.Parameters.AddWithValue("@wlasciciel", login.zalogowany());
                     command.Parameters.AddWithValue("@zatankowane", Convert.ToDouble(txtzatankowane.Text));
                     command.Parameters.AddWithValue("@zaplacone", Convert.ToDouble(txtzaplacone.Text));
                     command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
