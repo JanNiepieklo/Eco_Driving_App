@@ -16,7 +16,7 @@ namespace Eco_Driving_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main_Form());
+            Application.Run(new login_form());
         }
     }
 }

@@ -275,7 +275,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvraporty);
             this.Name = "add_report_form";
-            this.Text = "add_report";
+            this.Text = "Dodaj raport spalania";
             this.Load += new System.EventHandler(this.add_report_form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvraporty)).EndInit();
             this.ResumeLayout(false);

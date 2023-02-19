@@ -16,12 +16,6 @@ namespace Eco_Driving_App
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_cars_Click(object sender, EventArgs e)
         {
 
@@ -36,6 +30,13 @@ namespace Eco_Driving_App
         {
             add_report_form report = new add_report_form();
             report.ShowDialog();
+        }
+
+        private void button_logout_Click(object sender, EventArgs e)
+        {
+            login_form login = new login_form();
+            this.Hide();
+            login.Show();
         }
     }
 }

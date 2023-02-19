@@ -94,6 +94,14 @@ namespace Eco_Driving_App
             adapter.Fill(tabela);
             return tabela;
         }
+        //public DataTable gettabela(SqlCommand command)
+        //{
+        //    command.Connection = connect;
+        //    SqlDataAdapter adapter = new SqlDataAdapter(command);
+        //    DataTable tabela = new DataTable();
+        //    adapter.Fill(tabela);
+        //    return tabela;
+        //}
 
         private void dgvraporty_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
