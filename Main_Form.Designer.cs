@@ -34,8 +34,10 @@
             this.button_reports = new System.Windows.Forms.Button();
             this.button_cars = new System.Windows.Forms.Button();
             this.panel_logo = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtZalogowany = new System.Windows.Forms.Label();
             this.panel_background.SuspendLayout();
             this.panel_logo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -126,6 +128,16 @@
             this.panel_logo.Size = new System.Drawing.Size(200, 100);
             this.panel_logo.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Eco_Driving_App.Properties.Resources.fuel_pump_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(33, 42);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(131, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -137,15 +149,25 @@
             this.label1.Text = "Eco Driving App";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // pictureBox1
+            // label2
             // 
-            this.pictureBox1.Image = global::Eco_Driving_App.Properties.Resources.fuel_pump_icon;
-            this.pictureBox1.Location = new System.Drawing.Point(33, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(131, 54);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(17, 119);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 23);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Witaj";
+            // 
+            // txtZalogowany
+            // 
+            this.txtZalogowany.AutoSize = true;
+            this.txtZalogowany.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtZalogowany.Location = new System.Drawing.Point(76, 119);
+            this.txtZalogowany.Name = "txtZalogowany";
+            this.txtZalogowany.Size = new System.Drawing.Size(107, 23);
+            this.txtZalogowany.TabIndex = 3;
+            this.txtZalogowany.Text = "Zalogowany";
             // 
             // Main_Form
             // 
@@ -153,6 +175,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1064, 593);
+            this.Controls.Add(this.txtZalogowany);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel_background);
             this.Name = "Main_Form";
             this.Text = "Eco Driving App";
@@ -161,6 +185,7 @@
             this.panel_logo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -174,6 +199,8 @@
         private System.Windows.Forms.Panel panel_logo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label txtZalogowany;
     }
 }
 

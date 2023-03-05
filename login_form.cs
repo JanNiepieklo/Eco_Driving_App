@@ -18,18 +18,15 @@ namespace Eco_Driving_App
         SqlConnection connect = new SqlConnection();
         SqlCommand command = new SqlCommand();
         SQL_connect sqlcon = new SQL_connect();
-        string a;
         public login_form()
         {
             InitializeComponent();
             connect = new SqlConnection(sqlcon.connection());
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void btnzaloguj_Click(object sender, EventArgs e)
         {
             string login = txtlogin.Text;
@@ -40,11 +37,11 @@ namespace Eco_Driving_App
                 Main_Form main = new Main_Form();
                 this.Hide();
                 main.Show();
-                a = login;
+                main.txtZalogowany.Text = Convert.ToString(login);
             }
             else
             {
-                MessageBox.Show("gosciu zle haslo ERROR ERROR");
+                MessageBox.Show("Zły login lub hasło, spróbuj ponownie.");
             }
         }
         public DataTable gettabela(SqlCommand command)
@@ -60,8 +57,7 @@ namespace Eco_Driving_App
             txtlogin.Clear();
             txthaslo.Clear();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnzarejestruj_Click(object sender, EventArgs e)
         {
             try
             {
@@ -73,7 +69,7 @@ namespace Eco_Driving_App
                     connect.Open();
                     command.ExecuteNonQuery();
                     connect.Close();
-                    MessageBox.Show("gitarson");
+                    MessageBox.Show("ok");
                     Clear();
                 }
             }
@@ -83,9 +79,15 @@ namespace Eco_Driving_App
                 throw;
             }
         }
-        public string zalogowany()
+        private void login_form_Load(object sender, EventArgs e)
         {
-            return a;
+
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Exit();
         }
     }
 }

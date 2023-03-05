@@ -24,7 +24,6 @@ namespace Eco_Driving_App
             connect = new SqlConnection(sqlcon.connection());
             pokazraport();
         }
-
         private void add_report_form_Load(object sender, EventArgs e)
         {
 
@@ -32,13 +31,17 @@ namespace Eco_Driving_App
 
         private void btndodaj_Click(object sender, EventArgs e)
         {
-            login_form login = new login_form();
+            login_form login2 = new login_form();
             try
             {
                 if(MessageBox.Show("na pewno?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                 {
-                    command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena)VALUES(@wlasciciel,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena)", connect);
-                    command.Parameters.AddWithValue("@wlasciciel", login.zalogowany());
+                    Main_Form main = new Main_Form();
+                    string wlasciciel = main.zalogowany();
+                    double przejechane;
+                    przejechane = 100;
+                    command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena,przejechane)VALUES(@wlasciciel,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena,@przejechane)", connect);
+                    command.Parameters.AddWithValue("@wlasciciel", wlasciciel);
                     command.Parameters.AddWithValue("@zatankowane", Convert.ToDouble(txtzatankowane.Text));
                     command.Parameters.AddWithValue("@zaplacone", Convert.ToDouble(txtzaplacone.Text));
                     command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
@@ -46,10 +49,11 @@ namespace Eco_Driving_App
                     command.Parameters.AddWithValue("@data", dtdata.Value);
                     command.Parameters.AddWithValue("@dopelna", cbdopelna.Checked);
                     command.Parameters.AddWithValue("@cena", Convert.ToDouble(txtzaplacone.Text)/ (Convert.ToDouble(txtzatankowane.Text)));
+                    command.Parameters.AddWithValue("@przejechane", przejechane);
                     connect.Open();
                     command.ExecuteNonQuery();
                     connect.Close();
-                    MessageBox.Show("gitarson");
+                    MessageBox.Show("ok");
                     Clear();
                     pokazraport();
                 }
@@ -60,17 +64,22 @@ namespace Eco_Driving_App
                 throw;
             }
         }
-
         private void btnwyczysc_Click(object sender, EventArgs e)
         {
-
+            txtzatankowane.Clear();
+            txtzaplacone.Clear();
+            txtprzebieg.Clear();
+            txtprzebieg.Clear();
+            cbpaliwo.SelectedIndex = 0;
+            dtdata.Value = DateTime.Now;
+            cbdopelna.Checked = false;
         }
 
         private void btnanuluj_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
         }
-        
+
         public void Clear()
         {
             txtzatankowane.Clear();
@@ -95,14 +104,6 @@ namespace Eco_Driving_App
             adapter.Fill(tabela);
             return tabela;
         }
-        //public DataTable gettabela(SqlCommand command)
-        //{
-        //    command.Connection = connect;
-        //    SqlDataAdapter adapter = new SqlDataAdapter(command);
-        //    DataTable tabela = new DataTable();
-        //    adapter.Fill(tabela);
-        //    return tabela;
-        //}
 
         private void dgvraporty_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

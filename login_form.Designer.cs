@@ -33,8 +33,8 @@
             this.txtlogin = new System.Windows.Forms.TextBox();
             this.txthaslo = new System.Windows.Forms.TextBox();
             this.panel_background = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnzaloguj = new System.Windows.Forms.Button();
             this.btnzarejestruj = new System.Windows.Forms.Button();
             this.panel_background.SuspendLayout();
@@ -90,16 +90,6 @@
             this.panel_background.Size = new System.Drawing.Size(800, 100);
             this.panel_background.TabIndex = 6;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Malgun Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(289, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(175, 30);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Eco Driving App";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Eco_Driving_App.Properties.Resources.fuel_pump_icon;
@@ -109,6 +99,16 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Malgun Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(289, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(175, 30);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Eco Driving App";
             // 
             // btnzaloguj
             // 
@@ -132,13 +132,13 @@
             this.btnzarejestruj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzarejestruj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnzarejestruj.ForeColor = System.Drawing.Color.White;
-            this.btnzarejestruj.Location = new System.Drawing.Point(408, 333);
+            this.btnzarejestruj.Location = new System.Drawing.Point(400, 333);
             this.btnzarejestruj.Name = "btnzarejestruj";
             this.btnzarejestruj.Size = new System.Drawing.Size(118, 41);
             this.btnzarejestruj.TabIndex = 15;
             this.btnzarejestruj.Text = "Zarejestruj";
             this.btnzarejestruj.UseVisualStyleBackColor = false;
-            this.btnzarejestruj.Click += new System.EventHandler(this.button1_Click);
+            this.btnzarejestruj.Click += new System.EventHandler(this.btnzarejestruj_Click);
             // 
             // login_form
             // 
@@ -154,6 +154,7 @@
             this.Controls.Add(this.label1);
             this.Name = "login_form";
             this.Text = "Logowanie";
+            this.Load += new System.EventHandler(this.login_form_Load);
             this.panel_background.ResumeLayout(false);
             this.panel_background.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
