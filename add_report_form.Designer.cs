@@ -47,6 +47,7 @@
             this.cbdopelna = new System.Windows.Forms.CheckBox();
             this.cbpaliwo = new System.Windows.Forms.ComboBox();
             this.btnanuluj = new System.Windows.Forms.Button();
+            this.btn_czyszczenie = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvraporty)).BeginInit();
             this.SuspendLayout();
             // 
@@ -250,11 +251,27 @@
             this.btnanuluj.UseVisualStyleBackColor = false;
             this.btnanuluj.Click += new System.EventHandler(this.btnanuluj_Click);
             // 
+            // btn_czyszczenie
+            // 
+            this.btn_czyszczenie.BackColor = System.Drawing.Color.DarkOrange;
+            this.btn_czyszczenie.FlatAppearance.BorderSize = 0;
+            this.btn_czyszczenie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_czyszczenie.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btn_czyszczenie.ForeColor = System.Drawing.Color.White;
+            this.btn_czyszczenie.Location = new System.Drawing.Point(705, 375);
+            this.btn_czyszczenie.Name = "btn_czyszczenie";
+            this.btn_czyszczenie.Size = new System.Drawing.Size(158, 41);
+            this.btn_czyszczenie.TabIndex = 19;
+            this.btn_czyszczenie.Text = "Czyszczenie tabel";
+            this.btn_czyszczenie.UseVisualStyleBackColor = false;
+            this.btn_czyszczenie.Click += new System.EventHandler(this.btn_czyszczenie_Click);
+            // 
             // add_report_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 643);
+            this.Controls.Add(this.btn_czyszczenie);
             this.Controls.Add(this.btnanuluj);
             this.Controls.Add(this.cbpaliwo);
             this.Controls.Add(this.cbdopelna);
@@ -304,5 +321,6 @@
         private System.Windows.Forms.CheckBox cbdopelna;
         private System.Windows.Forms.ComboBox cbpaliwo;
         private System.Windows.Forms.Button btnanuluj;
+        private System.Windows.Forms.Button btn_czyszczenie;
     }
 }

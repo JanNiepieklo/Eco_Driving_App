@@ -155,5 +155,13 @@ namespace Eco_Driving_App
         {
 
         }
+
+        private void btn_czyszczenie_Click(object sender, EventArgs e)
+        {
+            command = new SqlCommand("DELETE FROM Uzytkownicy", connect);
+            connect.Open();
+            command.ExecuteNonQuery();
+            connect.Close();
+        }
     }
 }
