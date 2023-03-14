@@ -17,7 +17,10 @@ namespace Eco_Driving_App
         
         SqlConnection connect = new SqlConnection();
         SqlCommand command = new SqlCommand();
+        SqlCommand command1 = new SqlCommand();
+        SqlCommand command2 = new SqlCommand();
         SQL_connect sqlcon = new SQL_connect();
+
         public add_report_form()
         {
             InitializeComponent();
@@ -34,14 +37,56 @@ namespace Eco_Driving_App
             login_form login2 = new login_form();
             try
             {
-                if(MessageBox.Show("na pewno?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+                if(MessageBox.Show("Czy na pewno chcesz dodać nowy raport?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                 {
-                    Main_Form main = new Main_Form();
-                    string wlasciciel = main.zalogowany();
-                    double przejechane;
-                    przejechane = 100;
-                    command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena,przejechane)VALUES(@wlasciciel,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena,@przejechane)", connect);
-                    command.Parameters.AddWithValue("@wlasciciel", wlasciciel);
+                    string zalogowany = " ";
+                    double przejechane = 0;
+                    try
+                    {
+                        command1 = new SqlCommand("SELECT TOP 1 * FROM Logowanie ORDER BY ID DESC", connect);
+                        connect.Open();
+                        SqlDataReader reader = command1.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                zalogowany = Convert.ToString(reader["Zalogowany"]);
+                            }
+                        }
+
+                        reader.Close();
+                        connect.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        throw;
+                    }
+                    try
+                    {
+                        command2 = new SqlCommand("SELECT TOP 1 * FROM Tankowanie ORDER BY ID DESC", connect);
+                        connect.Open();
+                        SqlDataReader reader2 = command2.ExecuteReader();
+
+                        if (reader2.HasRows)
+                        {
+                            while (reader2.Read())
+                            {
+                                przejechane = Convert.ToDouble(reader2["Przebieg"]);
+                            }
+                        }
+
+                        reader2.Close();
+                        connect.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        throw;
+                    }
+                    command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena,przejechane,spalanie)VALUES(@wlasciciel,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena,@przejechane,@spalanie)", connect);
+                    command.Parameters.AddWithValue("@wlasciciel", zalogowany);
                     command.Parameters.AddWithValue("@zatankowane", Convert.ToDouble(txtzatankowane.Text));
                     command.Parameters.AddWithValue("@zaplacone", Convert.ToDouble(txtzaplacone.Text));
                     command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
@@ -49,11 +94,12 @@ namespace Eco_Driving_App
                     command.Parameters.AddWithValue("@data", dtdata.Value);
                     command.Parameters.AddWithValue("@dopelna", cbdopelna.Checked);
                     command.Parameters.AddWithValue("@cena", Convert.ToDouble(txtzaplacone.Text)/ (Convert.ToDouble(txtzatankowane.Text)));
-                    command.Parameters.AddWithValue("@przejechane", przejechane);
+                    command.Parameters.AddWithValue("@przejechane", Convert.ToDouble(txtprzebieg.Text)-przejechane);
+                    command.Parameters.AddWithValue("@spalanie", 100*Convert.ToDouble(txtzatankowane.Text)/(Convert.ToDouble(txtprzebieg.Text) - przejechane));
                     connect.Open();
                     command.ExecuteNonQuery();
                     connect.Close();
-                    MessageBox.Show("ok");
+                    MessageBox.Show("Raport został pomyślnie wprowadzony!");
                     Clear();
                     pokazraport();
                 }

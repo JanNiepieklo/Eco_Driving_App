@@ -38,10 +38,6 @@ namespace Eco_Driving_App
             this.Hide();
             login.Show();
         }
-        public string zalogowany()
-        {
-            return txtZalogowany.Text;
-        }
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);

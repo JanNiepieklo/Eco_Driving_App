@@ -34,10 +34,15 @@ namespace Eco_Driving_App
             DataTable table = gettabela(new SqlCommand("SELECT * FROM Uzytkownicy WHERE wlasciciel = '" + login + "' AND haslo = '" + haslo + "'"));
             if (table.Rows.Count > 0)
             {
+                command = new SqlCommand("INSERT INTO [Logowanie](zalogowany)VALUES(@zalogowany)", connect);
+                command.Parameters.AddWithValue("@zalogowany", txtlogin.Text);
+                connect.Open();
+                command.ExecuteNonQuery();
+                connect.Close();
+                Clear();
                 Main_Form main = new Main_Form();
                 this.Hide();
                 main.Show();
-                main.txtZalogowany.Text = Convert.ToString(login);
             }
             else
             {
@@ -61,7 +66,7 @@ namespace Eco_Driving_App
         {
             try
             {
-                if (MessageBox.Show("na pewno?", "Dodawanie użytkownika", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Czy na pewno chcesz dodać nowego użytkownika?", "Dodawanie użytkownika", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     command = new SqlCommand("INSERT INTO [Uzytkownicy](wlasciciel,haslo)VALUES(@wlasciciel,@haslo)", connect);
                     command.Parameters.AddWithValue("@wlasciciel", txtlogin.Text);
@@ -69,7 +74,7 @@ namespace Eco_Driving_App
                     connect.Open();
                     command.ExecuteNonQuery();
                     connect.Close();
-                    MessageBox.Show("ok");
+                    MessageBox.Show("Nowy użytkownik został pomyślnie zarejestrowany!");
                     Clear();
                 }
             }
