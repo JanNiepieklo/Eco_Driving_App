@@ -144,7 +144,7 @@ namespace Eco_Driving_App
         }
         public DataTable getraporty()
         {
-            SqlCommand command2 = new SqlCommand("SELECT * FROM Tankowanie", connect);
+            SqlCommand command2 = new SqlCommand("SELECT TOP 20 * FROM Tankowanie ORDER BY Przebieg DESC", connect);
             SqlDataAdapter adapter = new SqlDataAdapter(command2);
             DataTable tabela = new DataTable();
             adapter.Fill(tabela);
