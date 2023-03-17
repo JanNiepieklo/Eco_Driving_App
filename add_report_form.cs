@@ -18,8 +18,8 @@ namespace Eco_Driving_App
         SqlConnection connect = new SqlConnection();
         SqlCommand command = new SqlCommand();
         SqlCommand command1 = new SqlCommand();
-        SqlCommand command2 = new SqlCommand();
         SQL_connect sqlcon = new SQL_connect();
+        Main_Form login = new Main_Form();
 
         public add_report_form()
         {
@@ -34,16 +34,16 @@ namespace Eco_Driving_App
 
         private void btndodaj_Click(object sender, EventArgs e)
         {
-            login_form login2 = new login_form();
             try
             {
                 if(MessageBox.Show("Czy na pewno chcesz dodać nowy raport?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                 {
-                    string zalogowany = " ";
+                    string zalogowany = login.get_zalogowany();
                     double przejechane = 0;
+                    
                     try
                     {
-                        command1 = new SqlCommand("SELECT TOP 1 * FROM Logowanie ORDER BY ID DESC", connect);
+                        command1 = new SqlCommand("SELECT TOP 1 * FROM Tankowanie ORDER BY ID DESC", connect);
                         connect.Open();
                         SqlDataReader reader = command1.ExecuteReader();
 
@@ -51,33 +51,11 @@ namespace Eco_Driving_App
                         {
                             while (reader.Read())
                             {
-                                zalogowany = Convert.ToString(reader["Zalogowany"]);
+                                przejechane = Convert.ToDouble(reader["Przebieg"]);
                             }
                         }
 
                         reader.Close();
-                        connect.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        throw;
-                    }
-                    try
-                    {
-                        command2 = new SqlCommand("SELECT TOP 1 * FROM Tankowanie ORDER BY ID DESC", connect);
-                        connect.Open();
-                        SqlDataReader reader2 = command2.ExecuteReader();
-
-                        if (reader2.HasRows)
-                        {
-                            while (reader2.Read())
-                            {
-                                przejechane = Convert.ToDouble(reader2["Przebieg"]);
-                            }
-                        }
-
-                        reader2.Close();
                         connect.Close();
                     }
                     catch (Exception ex)
