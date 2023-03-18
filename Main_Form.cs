@@ -52,7 +52,8 @@ namespace Eco_Driving_App
 
         private void button_cars_Click(object sender, EventArgs e)
         {
-            
+            cars_form cars = new cars_form();
+            cars.ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)

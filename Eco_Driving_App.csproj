@@ -67,6 +67,12 @@
     <Compile Include="add_report_form.Designer.cs">
       <DependentUpon>add_report_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="cars_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cars_form.Designer.cs">
+      <DependentUpon>cars_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="login_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     <Compile Include="SQL_connect.cs" />
     <EmbeddedResource Include="add_report_form.resx">
       <DependentUpon>add_report_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cars_form.resx">
+      <DependentUpon>cars_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login_form.resx">
       <DependentUpon>login_form.cs</DependentUpon>

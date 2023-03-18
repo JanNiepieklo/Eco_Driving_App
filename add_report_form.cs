@@ -90,13 +90,14 @@ namespace Eco_Driving_App
         }
         private void btnwyczysc_Click(object sender, EventArgs e)
         {
-            txtzatankowane.Clear();
-            txtzaplacone.Clear();
-            txtprzebieg.Clear();
-            txtprzebieg.Clear();
-            cbpaliwo.SelectedIndex = 0;
-            dtdata.Value = DateTime.Now;
-            cbdopelna.Checked = false;
+            Clear();
+            //txtzatankowane.Clear();
+            //txtzaplacone.Clear();
+            //txtprzebieg.Clear();
+            //txtprzebieg.Clear();
+            //cbpaliwo.SelectedIndex = 0;
+            //dtdata.Value = DateTime.Now;
+            //cbdopelna.Checked = false;
         }
 
         private void btnanuluj_Click(object sender, EventArgs e)
