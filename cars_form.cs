@@ -17,6 +17,8 @@ namespace Eco_Driving_App
     {
         SqlConnection connect = new SqlConnection();
         SQL_connect sqlcon = new SQL_connect();
+        SqlCommand command = new SqlCommand();
+        Main_Form login = new Main_Form();
         public cars_form()
         {
             InitializeComponent();
@@ -50,18 +52,52 @@ namespace Eco_Driving_App
 
         public void Clear()
         {
-            //txtzatankowane.Clear();
-            //txtzaplacone.Clear();
-            //txtprzebieg.Clear();
-            //txtprzebieg.Clear();
-            //cbpaliwo.SelectedIndex = 0;
-            //dtdata.Value = DateTime.Now;
-            //cbdopelna.Checked = false;
+            txtmarka.Clear();
+            txtmodel.Clear();
+            cbpaliwo.SelectedIndex = 0;
+            txtpojemnosc.Clear();
+            txtmoc.Clear();
+            txtrok.Clear();
         }
 
         private void btnwyczysc_Click(object sender, EventArgs e)
         {
             Clear();
         }
-    }
+
+        private void btndodaj_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Czy na pewno chcesz dodać nowy samochód?", "Dodawanie samochodu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string zalogowany = login.get_zalogowany();
+                    command = new SqlCommand("INSERT INTO [Samochody](wlasciciel,marka,model,paliwo,pojemnosc,moc,rok_prod)VALUES(@wlasciciel,@marka,@model,@paliwo,@pojemnosc,@moc,@rok_prod)", connect);
+                    command.Parameters.AddWithValue("@wlasciciel", zalogowany);
+                    command.Parameters.AddWithValue("@marka", (txtmarka.Text));
+                    command.Parameters.AddWithValue("@model", txtmodel.Text);
+                    command.Parameters.AddWithValue("@paliwo", cbpaliwo.Text);
+                    command.Parameters.AddWithValue("@pojemnosc", Convert.ToDouble(txtpojemnosc.Text));
+                    command.Parameters.AddWithValue("@moc", txtmoc.Text);
+                    command.Parameters.AddWithValue("@rok_prod", txtrok.Text);
+                    connect.Open();
+                    command.ExecuteNonQuery();
+                    connect.Close();
+                    MessageBox.Show("Samochód został pomyślnie dodany!");
+                    Clear();
+                    pokazraport();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        private void txtzaplacone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }    
 }

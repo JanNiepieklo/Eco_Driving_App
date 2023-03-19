@@ -110,7 +110,6 @@ namespace Eco_Driving_App
             txtzatankowane.Clear();
             txtzaplacone.Clear();
             txtprzebieg.Clear();
-            txtprzebieg.Clear();
             cbpaliwo.SelectedIndex = 0;
             dtdata.Value = DateTime.Now;
             cbdopelna.Checked = false;
@@ -123,7 +122,8 @@ namespace Eco_Driving_App
         }
         public DataTable getraporty()
         {
-            SqlCommand command2 = new SqlCommand("SELECT TOP 20 * FROM Tankowanie ORDER BY Przebieg DESC", connect);
+            string zalogowany = login.get_zalogowany();
+            SqlCommand command2 = new SqlCommand("SELECT TOP 20 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' ORDER BY Przebieg DESC", connect);
             SqlDataAdapter adapter = new SqlDataAdapter(command2);
             DataTable tabela = new DataTable();
             adapter.Fill(tabela);
