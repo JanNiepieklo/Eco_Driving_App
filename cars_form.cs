@@ -38,7 +38,9 @@ namespace Eco_Driving_App
         }
         public DataTable getraporty()
         {
-            SqlCommand command = new SqlCommand("SELECT TOP 20 * FROM Samochody", connect);
+
+            string zalogowany = login.get_zalogowany();
+            SqlCommand command = new SqlCommand("SELECT TOP 20 marka, model, paliwo, pojemnosc, moc, rok_prod FROM Samochody WHERE wlasciciel = '" + zalogowany + "'", connect);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataTable tabela = new DataTable();
             adapter.Fill(tabela);
@@ -72,7 +74,7 @@ namespace Eco_Driving_App
                 if (MessageBox.Show("Czy na pewno chcesz dodać nowy samochód?", "Dodawanie samochodu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string zalogowany = login.get_zalogowany();
-                    command = new SqlCommand("INSERT INTO [Samochody](wlasciciel,marka,model,paliwo,pojemnosc,moc,rok_prod)VALUES(@wlasciciel,@marka,@model,@paliwo,@pojemnosc,@moc,@rok_prod)", connect);
+                    command = new SqlCommand("INSERT INTO [Samochody](wlasciciel,marka,model,paliwo,pojemnosc,moc,rok_prod,wybrany)VALUES(@wlasciciel,@marka,@model,@paliwo,@pojemnosc,@moc,@rok_prod,@wybrany)", connect);
                     command.Parameters.AddWithValue("@wlasciciel", zalogowany);
                     command.Parameters.AddWithValue("@marka", (txtmarka.Text));
                     command.Parameters.AddWithValue("@model", txtmodel.Text);
@@ -80,6 +82,7 @@ namespace Eco_Driving_App
                     command.Parameters.AddWithValue("@pojemnosc", Convert.ToDouble(txtpojemnosc.Text));
                     command.Parameters.AddWithValue("@moc", txtmoc.Text);
                     command.Parameters.AddWithValue("@rok_prod", txtrok.Text);
+                    command.Parameters.AddWithValue("@wybrany", "0");
                     connect.Open();
                     command.ExecuteNonQuery();
                     connect.Close();

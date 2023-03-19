@@ -36,6 +36,12 @@
             this.panel_logo = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbsamochod = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtuzytkownik = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtmodel = new System.Windows.Forms.Label();
             this.panel_background.SuspendLayout();
             this.panel_logo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -147,12 +153,78 @@
             this.label1.Text = "Eco Driving App";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // cbsamochod
+            // 
+            this.cbsamochod.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbsamochod.FormattingEnabled = true;
+            this.cbsamochod.Location = new System.Drawing.Point(282, 272);
+            this.cbsamochod.Name = "cbsamochod";
+            this.cbsamochod.Size = new System.Drawing.Size(215, 31);
+            this.cbsamochod.TabIndex = 18;
+            this.cbsamochod.SelectedIndexChanged += new System.EventHandler(this.cbsamochod_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(29, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 23);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Cześć";
+            // 
+            // txtuzytkownik
+            // 
+            this.txtuzytkownik.AutoSize = true;
+            this.txtuzytkownik.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtuzytkownik.Location = new System.Drawing.Point(88, 127);
+            this.txtuzytkownik.Name = "txtuzytkownik";
+            this.txtuzytkownik.Size = new System.Drawing.Size(103, 23);
+            this.txtuzytkownik.TabIndex = 21;
+            this.txtuzytkownik.Text = "użytkownik";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(29, 275);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(225, 23);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Zmień wybrany samochód:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(29, 197);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(292, 23);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Twój aktualnie wybrany samochód:";
+            // 
+            // txtmodel
+            // 
+            this.txtmodel.AutoSize = true;
+            this.txtmodel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtmodel.Location = new System.Drawing.Point(341, 185);
+            this.txtmodel.Name = "txtmodel";
+            this.txtmodel.Size = new System.Drawing.Size(99, 37);
+            this.txtmodel.TabIndex = 24;
+            this.txtmodel.Text = "model";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1064, 593);
+            this.Controls.Add(this.txtmodel);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtuzytkownik);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbsamochod);
             this.Controls.Add(this.panel_background);
             this.Name = "Main_Form";
             this.Text = "Eco Driving App";
@@ -161,6 +233,7 @@
             this.panel_logo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -174,6 +247,12 @@
         private System.Windows.Forms.Panel panel_logo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox cbsamochod;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label txtuzytkownik;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label txtmodel;
     }
 }
 

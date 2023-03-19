@@ -39,11 +39,12 @@ namespace Eco_Driving_App
                 if(MessageBox.Show("Czy na pewno chcesz dodać nowy raport?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                 {
                     string zalogowany = login.get_zalogowany();
+                    string model = login.get_model();
                     double przejechane = 0;
                     
                     try
                     {
-                        command1 = new SqlCommand("SELECT TOP 1 * FROM Tankowanie ORDER BY ID DESC", connect);
+                        command1 = new SqlCommand("SELECT TOP 1 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY ID DESC", connect);
                         connect.Open();
                         SqlDataReader reader = command1.ExecuteReader();
 
@@ -63,17 +64,26 @@ namespace Eco_Driving_App
                         MessageBox.Show(ex.Message);
                         throw;
                     }
-                    command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena,przejechane,spalanie)VALUES(@wlasciciel,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena,@przejechane,@spalanie)", connect);
+                    command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,marka,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena,przejechane,spalanie)VALUES(@wlasciciel,@marka,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena,@przejechane,@spalanie)", connect);
                     command.Parameters.AddWithValue("@wlasciciel", zalogowany);
+                    command.Parameters.AddWithValue("@marka", model);
                     command.Parameters.AddWithValue("@zatankowane", Convert.ToDouble(txtzatankowane.Text));
                     command.Parameters.AddWithValue("@zaplacone", Convert.ToDouble(txtzaplacone.Text));
                     command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
                     command.Parameters.AddWithValue("@paliwo", cbpaliwo.Text);
                     command.Parameters.AddWithValue("@data", dtdata.Value);
                     command.Parameters.AddWithValue("@dopelna", cbdopelna.Checked);
-                    command.Parameters.AddWithValue("@cena", Convert.ToDouble(txtzaplacone.Text)/ (Convert.ToDouble(txtzatankowane.Text)));
-                    command.Parameters.AddWithValue("@przejechane", Convert.ToDouble(txtprzebieg.Text)-przejechane);
-                    command.Parameters.AddWithValue("@spalanie", 100*Convert.ToDouble(txtzatankowane.Text)/(Convert.ToDouble(txtprzebieg.Text) - przejechane));
+                    command.Parameters.AddWithValue("@cena", Convert.ToDouble(String.Format("{0:N2}", (Convert.ToDouble(txtzaplacone.Text)/ (Convert.ToDouble(txtzatankowane.Text))))));
+                    if (przejechane > 30000)
+                    {
+                        command.Parameters.AddWithValue("@przejechane", 0);
+                        command.Parameters.AddWithValue("@spalanie", 0);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@przejechane", Convert.ToDouble(txtprzebieg.Text) - przejechane);
+                        command.Parameters.AddWithValue("@spalanie", Convert.ToDouble(String.Format("{0:N2}", (100 * Convert.ToDouble(txtzatankowane.Text) / (Convert.ToDouble(txtprzebieg.Text) - przejechane)))));
+                    }
                     connect.Open();
                     command.ExecuteNonQuery();
                     connect.Close();
@@ -123,7 +133,8 @@ namespace Eco_Driving_App
         public DataTable getraporty()
         {
             string zalogowany = login.get_zalogowany();
-            SqlCommand command2 = new SqlCommand("SELECT TOP 20 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' ORDER BY Przebieg DESC", connect);
+            string model = login.get_model();
+            SqlCommand command2 = new SqlCommand("SELECT TOP 20 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY Przebieg DESC", connect);
             SqlDataAdapter adapter = new SqlDataAdapter(command2);
             DataTable tabela = new DataTable();
             adapter.Fill(tabela);
@@ -137,7 +148,7 @@ namespace Eco_Driving_App
 
         private void btn_czyszczenie_Click(object sender, EventArgs e)
         {
-            command = new SqlCommand("DELETE FROM Uzytkownicy", connect);
+            command = new SqlCommand("DELETE FROM Tankowanie", connect);
             connect.Open();
             command.ExecuteNonQuery();
             connect.Close();
