@@ -23,9 +23,13 @@ namespace Eco_Driving_App
             InitializeComponent();
             connect = new SqlConnection(sqlcon.connection());
         }
-        private void label1_Click(object sender, EventArgs e)
+        public DataTable gettabela(SqlCommand command)
         {
-
+            command.Connection = connect;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable tabela = new DataTable();
+            adapter.Fill(tabela);
+            return tabela;
         }
         private void btnzaloguj_Click(object sender, EventArgs e)
         {
@@ -48,15 +52,7 @@ namespace Eco_Driving_App
             {
                 MessageBox.Show("Zły login lub hasło, spróbuj ponownie.");
             }
-        }
-        public DataTable gettabela(SqlCommand command)
-        {
-            command.Connection = connect;
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable tabela = new DataTable();
-            adapter.Fill(tabela);
-            return tabela;
-        }
+        }        
         public void Clear()
         {
             txtlogin.Clear();
@@ -84,15 +80,18 @@ namespace Eco_Driving_App
                 throw;
             }
         }
-        private void login_form_Load(object sender, EventArgs e)
-        {
-
-        }
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-
             Application.Exit();
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void login_form_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

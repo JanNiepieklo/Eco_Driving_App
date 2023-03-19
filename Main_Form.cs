@@ -137,7 +137,7 @@ namespace Eco_Driving_App
         {
             try
             {
-                command = new SqlCommand("UPDATE [Samochody] SET wybrany=@wybrany WHERE wlasciciel = '" + zalogowany + "'", connect);
+                command = new SqlCommand("UPDATE [Samochody] SET wybrany=@wybrany WHERE wlasciciel = '" + zalogowany + "' AND wybrany = 1", connect);
                 command.Parameters.AddWithValue("@wybrany", "0");
                 connect.Open();
                 command.ExecuteNonQuery();
