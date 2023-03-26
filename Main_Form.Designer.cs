@@ -90,6 +90,7 @@
             this.button_statistics.TabIndex = 3;
             this.button_statistics.Text = "Statystyki";
             this.button_statistics.UseVisualStyleBackColor = false;
+            this.button_statistics.Click += new System.EventHandler(this.button_statistics_Click);
             // 
             // button_reports
             // 

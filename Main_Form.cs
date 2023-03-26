@@ -32,10 +32,8 @@ namespace Eco_Driving_App
 
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        zalogowany = Convert.ToString(reader["Zalogowany"]);
-                    }
+                    reader.Read();
+                    zalogowany = Convert.ToString(reader["Zalogowany"]);
                 }
 
                 reader.Close();
@@ -76,10 +74,8 @@ namespace Eco_Driving_App
 
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        model = Convert.ToString(reader["Model"]); ;
-                    }
+                    reader.Read();
+                    model = Convert.ToString(reader["Model"]);
                 }
 
                 reader.Close();
@@ -93,7 +89,6 @@ namespace Eco_Driving_App
             txtuzytkownik.Text = zalogowany;
             txtmodel.Text = model;
         }
-
         public string get_zalogowany()
         {
             return zalogowany;
@@ -102,43 +97,32 @@ namespace Eco_Driving_App
         {
             return model;
         }
-
         private void button_cars_Click(object sender, EventArgs e)
         {
             cars_form cars = new cars_form();
             cars.ShowDialog();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_reports_Click(object sender, EventArgs e)
         {
             add_report_form report = new add_report_form();
             report.ShowDialog();
         }
-
+        private void button_statistics_Click(object sender, EventArgs e)
+        {
+            statistics_form statistics = new statistics_form();
+            statistics.ShowDialog();
+        }
         private void button_logout_Click(object sender, EventArgs e)
         {
             login_form login = new login_form();
             this.Hide();
             login.Show();
         }
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-
-            Application.Exit();
-        }
-
         private void cbsamochod_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                command = new SqlCommand("UPDATE [Samochody] SET wybrany=@wybrany WHERE wlasciciel = '" + zalogowany + "' AND wybrany = 1", connect);
-                command.Parameters.AddWithValue("@wybrany", "0");
+                command = new SqlCommand("UPDATE [Samochody] SET wybrany = 0 WHERE wlasciciel = '" + zalogowany + "' AND wybrany = 1", connect);
                 connect.Open();
                 command.ExecuteNonQuery();
                 connect.Close();
@@ -150,8 +134,7 @@ namespace Eco_Driving_App
             }
             try
             {
-                command = new SqlCommand("UPDATE [Samochody] SET wybrany=@wybrany WHERE wlasciciel = '" + zalogowany + "' AND model = '" + cbsamochod.Text + "'", connect);
-                command.Parameters.AddWithValue("@wybrany", "1");
+                command = new SqlCommand("UPDATE [Samochody] SET wybrany = 1 WHERE wlasciciel = '" + zalogowany + "' AND model = '" + cbsamochod.Text + "'", connect);
                 connect.Open();
                 command.ExecuteNonQuery();
                 connect.Close();
@@ -169,12 +152,9 @@ namespace Eco_Driving_App
 
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        model = Convert.ToString(reader["Model"]); ;
-                    }
+                    reader.Read();
+                    model = Convert.ToString(reader["Model"]); ;
                 }
-
                 reader.Close();
                 connect.Close();
             }
@@ -184,6 +164,16 @@ namespace Eco_Driving_App
                 throw;
             }
             txtmodel.Text = model;
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Exit();
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

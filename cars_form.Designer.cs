@@ -52,7 +52,7 @@
             this.dgvsamochody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvsamochody.Location = new System.Drawing.Point(12, 12);
             this.dgvsamochody.Name = "dgvsamochody";
-            this.dgvsamochody.Size = new System.Drawing.Size(504, 210);
+            this.dgvsamochody.Size = new System.Drawing.Size(651, 210);
             this.dgvsamochody.TabIndex = 1;
             // 
             // btnanuluj
@@ -62,7 +62,7 @@
             this.btnanuluj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnanuluj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnanuluj.ForeColor = System.Drawing.Color.White;
-            this.btnanuluj.Location = new System.Drawing.Point(369, 590);
+            this.btnanuluj.Location = new System.Drawing.Point(426, 590);
             this.btnanuluj.Name = "btnanuluj";
             this.btnanuluj.Size = new System.Drawing.Size(118, 41);
             this.btnanuluj.TabIndex = 21;
@@ -77,7 +77,7 @@
             this.btnwyczysc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnwyczysc.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnwyczysc.ForeColor = System.Drawing.Color.White;
-            this.btnwyczysc.Location = new System.Drawing.Point(234, 590);
+            this.btnwyczysc.Location = new System.Drawing.Point(291, 590);
             this.btnwyczysc.Name = "btnwyczysc";
             this.btnwyczysc.Size = new System.Drawing.Size(118, 41);
             this.btnwyczysc.TabIndex = 20;
@@ -92,7 +92,7 @@
             this.btndodaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndodaj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btndodaj.ForeColor = System.Drawing.Color.White;
-            this.btndodaj.Location = new System.Drawing.Point(99, 590);
+            this.btndodaj.Location = new System.Drawing.Point(156, 590);
             this.btndodaj.Name = "btndodaj";
             this.btndodaj.Size = new System.Drawing.Size(118, 41);
             this.btndodaj.TabIndex = 19;
@@ -108,9 +108,9 @@
             "Benzyna",
             "Diesel",
             "LPG"});
-            this.cbpaliwo.Location = new System.Drawing.Point(272, 357);
+            this.cbpaliwo.Location = new System.Drawing.Point(309, 351);
             this.cbpaliwo.Name = "cbpaliwo";
-            this.cbpaliwo.Size = new System.Drawing.Size(215, 31);
+            this.cbpaliwo.Size = new System.Drawing.Size(354, 31);
             this.cbpaliwo.TabIndex = 29;
             // 
             // label7
@@ -126,9 +126,9 @@
             // txtmodel
             // 
             this.txtmodel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtmodel.Location = new System.Drawing.Point(272, 308);
+            this.txtmodel.Location = new System.Drawing.Point(309, 302);
             this.txtmodel.Name = "txtmodel";
-            this.txtmodel.Size = new System.Drawing.Size(215, 29);
+            this.txtmodel.Size = new System.Drawing.Size(354, 29);
             this.txtmodel.TabIndex = 26;
             // 
             // label5
@@ -144,26 +144,26 @@
             // txtmarka
             // 
             this.txtmarka.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtmarka.Location = new System.Drawing.Point(272, 259);
+            this.txtmarka.Location = new System.Drawing.Point(309, 253);
             this.txtmarka.Name = "txtmarka";
-            this.txtmarka.Size = new System.Drawing.Size(215, 29);
+            this.txtmarka.Size = new System.Drawing.Size(354, 29);
             this.txtmarka.TabIndex = 23;
             this.txtmarka.TextChanged += new System.EventHandler(this.txtzaplacone_TextChanged);
             // 
             // txtmoc
             // 
             this.txtmoc.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtmoc.Location = new System.Drawing.Point(272, 455);
+            this.txtmoc.Location = new System.Drawing.Point(309, 449);
             this.txtmoc.Name = "txtmoc";
-            this.txtmoc.Size = new System.Drawing.Size(215, 29);
+            this.txtmoc.Size = new System.Drawing.Size(354, 29);
             this.txtmoc.TabIndex = 34;
             // 
             // txtpojemnosc
             // 
             this.txtpojemnosc.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtpojemnosc.Location = new System.Drawing.Point(272, 406);
+            this.txtpojemnosc.Location = new System.Drawing.Point(309, 400);
             this.txtpojemnosc.Name = "txtpojemnosc";
-            this.txtpojemnosc.Size = new System.Drawing.Size(215, 29);
+            this.txtpojemnosc.Size = new System.Drawing.Size(354, 29);
             this.txtpojemnosc.TabIndex = 31;
             // 
             // label9
@@ -179,9 +179,9 @@
             // txtrok
             // 
             this.txtrok.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtrok.Location = new System.Drawing.Point(272, 504);
+            this.txtrok.Location = new System.Drawing.Point(309, 498);
             this.txtrok.Name = "txtrok";
-            this.txtrok.Size = new System.Drawing.Size(215, 29);
+            this.txtrok.Size = new System.Drawing.Size(354, 29);
             this.txtrok.TabIndex = 37;
             // 
             // label11
@@ -218,7 +218,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 643);
+            this.ClientSize = new System.Drawing.Size(676, 643);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtrok);
