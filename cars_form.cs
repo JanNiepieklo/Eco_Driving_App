@@ -25,17 +25,6 @@ namespace Eco_Driving_App
             connect = new SqlConnection(sqlcon.connection());
             pokazraport();
         }
-
-        private void cars_form_Load(object sender, EventArgs e)
-        {
-
-        }
-        public void pokazraport()
-        {
-            dgvsamochody.DataSource = getraporty();
-            DataGridViewTextBoxColumn textColumn = new DataGridViewTextBoxColumn();
-            textColumn = (DataGridViewTextBoxColumn)dgvsamochody.Columns[1];
-        }
         public DataTable getraporty()
         {
 
@@ -46,7 +35,12 @@ namespace Eco_Driving_App
             adapter.Fill(tabela);
             return tabela;
         }
-
+        public void pokazraport()
+        {
+            dgvsamochody.DataSource = getraporty();
+            DataGridViewTextBoxColumn textColumn = new DataGridViewTextBoxColumn();
+            textColumn = (DataGridViewTextBoxColumn)dgvsamochody.Columns[1];
+        }
         private void btnanuluj_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -61,7 +55,6 @@ namespace Eco_Driving_App
             txtmoc.Clear();
             txtrok.Clear();
         }
-
         private void btnwyczysc_Click(object sender, EventArgs e)
         {
             Clear();
@@ -93,12 +86,17 @@ namespace Eco_Driving_App
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }
         }
 
         private void txtzaplacone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void cars_form_Load(object sender, EventArgs e)
         {
 
         }

@@ -76,6 +76,7 @@ namespace Eco_Driving_App
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }

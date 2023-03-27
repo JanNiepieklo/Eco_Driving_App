@@ -61,6 +61,7 @@ namespace Eco_Driving_App
                     }
                     catch (Exception ex)
                     {
+                        connect.Close();
                         MessageBox.Show(ex.Message);
                         throw;
                     }
@@ -94,6 +95,7 @@ namespace Eco_Driving_App
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }
@@ -101,13 +103,6 @@ namespace Eco_Driving_App
         private void btnwyczysc_Click(object sender, EventArgs e)
         {
             Clear();
-            //txtzatankowane.Clear();
-            //txtzaplacone.Clear();
-            //txtprzebieg.Clear();
-            //txtprzebieg.Clear();
-            //cbpaliwo.SelectedIndex = 0;
-            //dtdata.Value = DateTime.Now;
-            //cbdopelna.Checked = false;
         }
 
         private void btnanuluj_Click(object sender, EventArgs e)
@@ -140,18 +135,16 @@ namespace Eco_Driving_App
             adapter.Fill(tabela);
             return tabela;
         }
-
-        private void dgvraporty_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btn_czyszczenie_Click(object sender, EventArgs e)
         {
             command = new SqlCommand("DELETE FROM Tankowanie", connect);
             connect.Open();
             command.ExecuteNonQuery();
             connect.Close();
+        }
+        private void dgvraporty_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

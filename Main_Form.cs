@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,6 +25,10 @@ namespace Eco_Driving_App
         {
             InitializeComponent();
             connect = new SqlConnection(sqlcon.connection());
+            odczyt_z_bazy();
+        }
+        public void odczyt_z_bazy()
+        {
             try
             {
                 command = new SqlCommand("SELECT TOP 1 * FROM Logowanie ORDER BY ID DESC", connect);
@@ -35,12 +40,12 @@ namespace Eco_Driving_App
                     reader.Read();
                     zalogowany = Convert.ToString(reader["Zalogowany"]);
                 }
-
                 reader.Close();
                 connect.Close();
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }
@@ -57,12 +62,12 @@ namespace Eco_Driving_App
                         cbsamochod.Items.Add(Convert.ToString(reader["Model"]));
                     }
                 }
-
                 reader.Close();
                 connect.Close();
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }
@@ -77,12 +82,12 @@ namespace Eco_Driving_App
                     reader.Read();
                     model = Convert.ToString(reader["Model"]);
                 }
-
                 reader.Close();
                 connect.Close();
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }
@@ -129,6 +134,7 @@ namespace Eco_Driving_App
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }
@@ -141,6 +147,7 @@ namespace Eco_Driving_App
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }
@@ -160,6 +167,7 @@ namespace Eco_Driving_App
             }
             catch (Exception ex)
             {
+                connect.Close();
                 MessageBox.Show(ex.Message);
                 throw;
             }
