@@ -13,8 +13,7 @@ using System.Windows.Forms.VisualStyles;
 namespace Eco_Driving_App
 {
     public partial class add_report_form : Form
-    {
-        
+    {        
         SqlConnection connect = new SqlConnection();
         SqlCommand command = new SqlCommand();
         SqlCommand command1 = new SqlCommand();
@@ -27,11 +26,6 @@ namespace Eco_Driving_App
             connect = new SqlConnection(sqlcon.connection());
             pokazraport();
         }
-        private void add_report_form_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btndodaj_Click(object sender, EventArgs e)
         {
             try
@@ -119,12 +113,6 @@ namespace Eco_Driving_App
             dtdata.Value = DateTime.Now;
             cbdopelna.Checked = false;
         }
-        public void pokazraport()
-        {
-            dgvraporty.DataSource = getraporty();
-            DataGridViewTextBoxColumn textColumn = new DataGridViewTextBoxColumn();
-            textColumn = (DataGridViewTextBoxColumn)dgvraporty.Columns[1];
-        }
         public DataTable getraporty()
         {
             string zalogowany = login.get_zalogowany();
@@ -135,6 +123,11 @@ namespace Eco_Driving_App
             adapter.Fill(tabela);
             return tabela;
         }
+        public void pokazraport()
+        {
+            dgvraporty.DataSource = getraporty();
+            dgvraporty.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
         private void btn_czyszczenie_Click(object sender, EventArgs e)
         {
             command = new SqlCommand("DELETE FROM Tankowanie", connect);
@@ -143,6 +136,10 @@ namespace Eco_Driving_App
             connect.Close();
         }
         private void dgvraporty_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void add_report_form_Load(object sender, EventArgs e)
         {
 
         }

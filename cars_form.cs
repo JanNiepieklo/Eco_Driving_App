@@ -38,8 +38,7 @@ namespace Eco_Driving_App
         public void pokazraport()
         {
             dgvsamochody.DataSource = getraporty();
-            DataGridViewTextBoxColumn textColumn = new DataGridViewTextBoxColumn();
-            textColumn = (DataGridViewTextBoxColumn)dgvsamochody.Columns[1];
+            dgvsamochody.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
         private void btnanuluj_Click(object sender, EventArgs e)
         {
@@ -50,7 +49,7 @@ namespace Eco_Driving_App
         {
             txtmarka.Clear();
             txtmodel.Clear();
-            cbpaliwo.SelectedIndex = 0;
+            cbpaliwo.ResetText();
             txtpojemnosc.Clear();
             txtmoc.Clear();
             txtrok.Clear();
