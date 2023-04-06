@@ -49,7 +49,7 @@ namespace Eco_Driving_App
         {
             txtmarka.Clear();
             txtmodel.Clear();
-            cbpaliwo.ResetText();
+            cbpaliwo.SelectedIndex = -1;
             txtpojemnosc.Clear();
             txtmoc.Clear();
             txtrok.Clear();

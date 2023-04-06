@@ -62,7 +62,7 @@
             this.btnanuluj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnanuluj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnanuluj.ForeColor = System.Drawing.Color.White;
-            this.btnanuluj.Location = new System.Drawing.Point(426, 590);
+            this.btnanuluj.Location = new System.Drawing.Point(405, 590);
             this.btnanuluj.Name = "btnanuluj";
             this.btnanuluj.Size = new System.Drawing.Size(118, 41);
             this.btnanuluj.TabIndex = 21;
@@ -77,7 +77,7 @@
             this.btnwyczysc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnwyczysc.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnwyczysc.ForeColor = System.Drawing.Color.White;
-            this.btnwyczysc.Location = new System.Drawing.Point(291, 590);
+            this.btnwyczysc.Location = new System.Drawing.Point(270, 590);
             this.btnwyczysc.Name = "btnwyczysc";
             this.btnwyczysc.Size = new System.Drawing.Size(118, 41);
             this.btnwyczysc.TabIndex = 20;
@@ -92,7 +92,7 @@
             this.btndodaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndodaj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btndodaj.ForeColor = System.Drawing.Color.White;
-            this.btndodaj.Location = new System.Drawing.Point(156, 590);
+            this.btndodaj.Location = new System.Drawing.Point(135, 590);
             this.btndodaj.Name = "btndodaj";
             this.btndodaj.Size = new System.Drawing.Size(118, 41);
             this.btndodaj.TabIndex = 19;
@@ -102,6 +102,7 @@
             // 
             // cbpaliwo
             // 
+            this.cbpaliwo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbpaliwo.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbpaliwo.FormattingEnabled = true;
             this.cbpaliwo.Items.AddRange(new object[] {

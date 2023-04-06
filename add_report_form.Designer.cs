@@ -56,7 +56,7 @@
             this.dgvraporty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvraporty.Location = new System.Drawing.Point(12, 12);
             this.dgvraporty.Name = "dgvraporty";
-            this.dgvraporty.Size = new System.Drawing.Size(875, 289);
+            this.dgvraporty.Size = new System.Drawing.Size(655, 289);
             this.dgvraporty.TabIndex = 0;
             this.dgvraporty.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvraporty_CellContentClick);
             // 
@@ -179,7 +179,7 @@
             this.btndodaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndodaj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btndodaj.ForeColor = System.Drawing.Color.White;
-            this.btndodaj.Location = new System.Drawing.Point(498, 590);
+            this.btndodaj.Location = new System.Drawing.Point(154, 612);
             this.btndodaj.Name = "btndodaj";
             this.btndodaj.Size = new System.Drawing.Size(118, 41);
             this.btndodaj.TabIndex = 13;
@@ -194,7 +194,7 @@
             this.btnwyczysc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnwyczysc.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnwyczysc.ForeColor = System.Drawing.Color.White;
-            this.btnwyczysc.Location = new System.Drawing.Point(633, 590);
+            this.btnwyczysc.Location = new System.Drawing.Point(289, 612);
             this.btnwyczysc.Name = "btnwyczysc";
             this.btnwyczysc.Size = new System.Drawing.Size(118, 41);
             this.btnwyczysc.TabIndex = 14;
@@ -225,6 +225,7 @@
             // 
             // cbpaliwo
             // 
+            this.cbpaliwo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbpaliwo.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbpaliwo.FormattingEnabled = true;
             this.cbpaliwo.Items.AddRange(new object[] {
@@ -243,7 +244,7 @@
             this.btnanuluj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnanuluj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnanuluj.ForeColor = System.Drawing.Color.White;
-            this.btnanuluj.Location = new System.Drawing.Point(768, 590);
+            this.btnanuluj.Location = new System.Drawing.Point(424, 612);
             this.btnanuluj.Name = "btnanuluj";
             this.btnanuluj.Size = new System.Drawing.Size(118, 41);
             this.btnanuluj.TabIndex = 18;
@@ -258,19 +259,20 @@
             this.btn_czyszczenie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_czyszczenie.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btn_czyszczenie.ForeColor = System.Drawing.Color.White;
-            this.btn_czyszczenie.Location = new System.Drawing.Point(705, 375);
+            this.btn_czyszczenie.Location = new System.Drawing.Point(567, 313);
             this.btn_czyszczenie.Name = "btn_czyszczenie";
-            this.btn_czyszczenie.Size = new System.Drawing.Size(158, 41);
+            this.btn_czyszczenie.Size = new System.Drawing.Size(49, 109);
             this.btn_czyszczenie.TabIndex = 19;
             this.btn_czyszczenie.Text = "Czyszczenie tabel";
             this.btn_czyszczenie.UseVisualStyleBackColor = false;
+            this.btn_czyszczenie.Visible = false;
             this.btn_czyszczenie.Click += new System.EventHandler(this.btn_czyszczenie_Click);
             // 
             // add_report_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(899, 643);
+            this.ClientSize = new System.Drawing.Size(679, 665);
             this.Controls.Add(this.btn_czyszczenie);
             this.Controls.Add(this.btnanuluj);
             this.Controls.Add(this.cbpaliwo);

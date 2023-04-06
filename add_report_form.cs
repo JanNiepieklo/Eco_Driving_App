@@ -69,7 +69,7 @@ namespace Eco_Driving_App
                     command.Parameters.AddWithValue("@data", dtdata.Value);
                     command.Parameters.AddWithValue("@dopelna", cbdopelna.Checked);
                     command.Parameters.AddWithValue("@cena", Convert.ToDouble(String.Format("{0:N2}", (Convert.ToDouble(txtzaplacone.Text)/ (Convert.ToDouble(txtzatankowane.Text))))));
-                    if (przejechane > 30000)
+                    if ((Convert.ToDouble(txtprzebieg.Text) - przejechane) > 30000)
                     {
                         command.Parameters.AddWithValue("@przejechane", 0);
                         command.Parameters.AddWithValue("@spalanie", 0);
@@ -109,7 +109,7 @@ namespace Eco_Driving_App
             txtzatankowane.Clear();
             txtzaplacone.Clear();
             txtprzebieg.Clear();
-            cbpaliwo.SelectedIndex = 0;
+            cbpaliwo.SelectedIndex = -1;
             dtdata.Value = DateTime.Now;
             cbdopelna.Checked = false;
         }
@@ -117,7 +117,7 @@ namespace Eco_Driving_App
         {
             string zalogowany = login.get_zalogowany();
             string model = login.get_model();
-            SqlCommand command2 = new SqlCommand("SELECT TOP 20 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY Przebieg DESC", connect);
+            SqlCommand command2 = new SqlCommand("SELECT TOP 20 zatankowane, zaplacone, przebieg, paliwo, data, cena, przejechane, spalanie FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY Przebieg DESC", connect);
             SqlDataAdapter adapter = new SqlDataAdapter(command2);
             DataTable tabela = new DataTable();
             adapter.Fill(tabela);
@@ -130,7 +130,7 @@ namespace Eco_Driving_App
         }
         private void btn_czyszczenie_Click(object sender, EventArgs e)
         {
-            command = new SqlCommand("DELETE FROM Tankowanie", connect);
+            command = new SqlCommand("DELETE FROM Tankowanie WHERE marka = 'Civic'", connect);
             connect.Open();
             command.ExecuteNonQuery();
             connect.Close();
