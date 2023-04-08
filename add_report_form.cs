@@ -16,7 +16,6 @@ namespace Eco_Driving_App
     {        
         SqlConnection connect = new SqlConnection();
         SqlCommand command = new SqlCommand();
-        SqlCommand command1 = new SqlCommand();
         SQL_connect sqlcon = new SQL_connect();
         Main_Form login = new Main_Form();
 
@@ -26,6 +25,38 @@ namespace Eco_Driving_App
             connect = new SqlConnection(sqlcon.connection());
             pokazraport();
         }
+        public DataTable getraporty()
+        {
+            string zalogowany = login.get_zalogowany();
+            string model = login.get_model();
+            command = new SqlCommand("SELECT TOP 20 zatankowane, zaplacone, przebieg, paliwo, data, cena, przejechane, spalanie FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY przebieg DESC", connect);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable tabela = new DataTable();
+            adapter.Fill(tabela);
+            return tabela;
+        }
+        public void pokazraport()
+        {
+            dgvraporty.DataSource = getraporty();
+            dgvraporty.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        private void btnanuluj_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+        public void Clear()
+        {
+            txtzatankowane.Clear();
+            txtzaplacone.Clear();
+            txtprzebieg.Clear();
+            cbpaliwo.SelectedIndex = -1;
+            dtdata.Value = DateTime.Now;
+            cbdopelna.Checked = false;
+        }
+        private void btnwyczysc_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
         private void btndodaj_Click(object sender, EventArgs e)
         {
             try
@@ -34,22 +65,20 @@ namespace Eco_Driving_App
                 {
                     string zalogowany = login.get_zalogowany();
                     string model = login.get_model();
-                    double przejechane = 0;
-                    
+                    double przejechane = 0;                    
                     try
                     {
-                        command1 = new SqlCommand("SELECT TOP 1 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY ID DESC", connect);
+                        command = new SqlCommand("SELECT TOP 1 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY ID DESC", connect);
                         connect.Open();
-                        SqlDataReader reader = command1.ExecuteReader();
+                        SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.HasRows)
                         {
                             while (reader.Read())
                             {
-                                przejechane = Convert.ToDouble(reader["Przebieg"]);
+                                przejechane = Convert.ToDouble(reader["przebieg"]);
                             }
                         }
-
                         reader.Close();
                         connect.Close();
                     }
@@ -93,40 +122,6 @@ namespace Eco_Driving_App
                 MessageBox.Show(ex.Message);
                 throw;
             }
-        }
-        private void btnwyczysc_Click(object sender, EventArgs e)
-        {
-            Clear();
-        }
-
-        private void btnanuluj_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
-        public void Clear()
-        {
-            txtzatankowane.Clear();
-            txtzaplacone.Clear();
-            txtprzebieg.Clear();
-            cbpaliwo.SelectedIndex = -1;
-            dtdata.Value = DateTime.Now;
-            cbdopelna.Checked = false;
-        }
-        public DataTable getraporty()
-        {
-            string zalogowany = login.get_zalogowany();
-            string model = login.get_model();
-            SqlCommand command2 = new SqlCommand("SELECT TOP 20 zatankowane, zaplacone, przebieg, paliwo, data, cena, przejechane, spalanie FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY Przebieg DESC", connect);
-            SqlDataAdapter adapter = new SqlDataAdapter(command2);
-            DataTable tabela = new DataTable();
-            adapter.Fill(tabela);
-            return tabela;
-        }
-        public void pokazraport()
-        {
-            dgvraporty.DataSource = getraporty();
-            dgvraporty.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
         private void btn_czyszczenie_Click(object sender, EventArgs e)
         {
