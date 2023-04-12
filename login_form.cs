@@ -64,13 +64,16 @@ namespace Eco_Driving_App
             {
                 if (MessageBox.Show("Czy na pewno chcesz dodać nowego użytkownika?", "Dodawanie użytkownika", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    command = new SqlCommand("INSERT INTO [Uzytkownicy](wlasciciel,haslo)VALUES(@wlasciciel,@haslo)", connect);
-                    command.Parameters.AddWithValue("@wlasciciel", txtlogin.Text);
-                    command.Parameters.AddWithValue("@haslo", txthaslo.Text);
-                    connect.Open();
-                    command.ExecuteNonQuery();
-                    connect.Close();
-                    MessageBox.Show("Nowy użytkownik został pomyślnie zarejestrowany!");
+                    if (sprawdz_dane())
+                    {
+                        command = new SqlCommand("INSERT INTO [Uzytkownicy](wlasciciel,haslo)VALUES(@wlasciciel,@haslo)", connect);
+                        command.Parameters.AddWithValue("@wlasciciel", txtlogin.Text);
+                        command.Parameters.AddWithValue("@haslo", txthaslo.Text);
+                        connect.Open();
+                        command.ExecuteNonQuery();
+                        connect.Close();
+                        MessageBox.Show("Nowy użytkownik został pomyślnie zarejestrowany!");                        
+                    }
                     Clear();
                 }
             }
@@ -85,6 +88,35 @@ namespace Eco_Driving_App
         {
             base.OnClosed(e);
             Application.Exit();
+        }
+        private bool sprawdz_dane()
+        {
+            bool wynik = true;
+            if (txtlogin.Text.Length > 30)
+            {
+                MessageBox.Show("Wprowadzony login musi być ograniczony do 30 znaków!");
+                wynik = false;
+                return wynik;
+            }
+            else if (txtlogin.Text.Length < 5)
+            {
+                MessageBox.Show("Wprowadzony login nie może być krótszy niż 5 znaków!");
+                wynik = false;
+                return wynik;
+            }
+            if (txthaslo.Text.Length > 30)
+            {
+                MessageBox.Show("Wprowadzone hasło musi być ograniczone do 30 znaków!");
+                wynik = false;
+                return wynik;
+            }
+            else if (txthaslo.Text.Length < 5)
+            {
+                MessageBox.Show("Wprowadzone hasło nie może być krótsze niż 5 znaków!");
+                wynik = false;
+                return wynik;
+            }
+            return wynik;
         }
         private void label1_Click(object sender, EventArgs e)
         {

@@ -65,22 +65,25 @@ namespace Eco_Driving_App
             {
                 if (MessageBox.Show("Czy na pewno chcesz dodać nowy samochód?", "Dodawanie samochodu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string zalogowany = login.get_zalogowany();
-                    command = new SqlCommand("INSERT INTO [Samochody](wlasciciel,marka,model,paliwo,pojemnosc,moc,rok_prod,wybrany)VALUES(@wlasciciel,@marka,@model,@paliwo,@pojemnosc,@moc,@rok_prod,@wybrany)", connect);
-                    command.Parameters.AddWithValue("@wlasciciel", zalogowany);
-                    command.Parameters.AddWithValue("@marka", (txtmarka.Text));
-                    command.Parameters.AddWithValue("@model", txtmodel.Text);
-                    command.Parameters.AddWithValue("@paliwo", cbpaliwo.Text);
-                    command.Parameters.AddWithValue("@pojemnosc", Convert.ToDouble(txtpojemnosc.Text));
-                    command.Parameters.AddWithValue("@moc", txtmoc.Text);
-                    command.Parameters.AddWithValue("@rok_prod", txtrok.Text);
-                    command.Parameters.AddWithValue("@wybrany", "0");
-                    connect.Open();
-                    command.ExecuteNonQuery();
-                    connect.Close();
-                    MessageBox.Show("Samochód został pomyślnie dodany!");
-                    Clear();
-                    pokazraport();
+                    if (sprawdz_dane())
+                    {
+                        string zalogowany = login.get_zalogowany();
+                        command = new SqlCommand("INSERT INTO [Samochody](wlasciciel,marka,model,paliwo,pojemnosc,moc,rok_prod,wybrany)VALUES(@wlasciciel,@marka,@model,@paliwo,@pojemnosc,@moc,@rok_prod,@wybrany)", connect);
+                        command.Parameters.AddWithValue("@wlasciciel", zalogowany);
+                        command.Parameters.AddWithValue("@marka", (txtmarka.Text));
+                        command.Parameters.AddWithValue("@model", txtmodel.Text);
+                        command.Parameters.AddWithValue("@paliwo", cbpaliwo.Text);
+                        command.Parameters.AddWithValue("@pojemnosc", Convert.ToDouble(txtpojemnosc.Text));
+                        command.Parameters.AddWithValue("@moc", txtmoc.Text);
+                        command.Parameters.AddWithValue("@rok_prod", txtrok.Text);
+                        command.Parameters.AddWithValue("@wybrany", "0");
+                        connect.Open();
+                        command.ExecuteNonQuery();
+                        connect.Close();
+                        MessageBox.Show("Samochód został pomyślnie dodany!");
+                        Clear();
+                        pokazraport();
+                    }
                 }
             }
             catch (Exception ex)
@@ -90,7 +93,71 @@ namespace Eco_Driving_App
                 throw;
             }
         }
-
+        private bool sprawdz_dane()
+        {
+            bool wynik = true;
+            if (txtmarka.Text.Length > 30)
+            {
+                MessageBox.Show("Wprowadzona marka samochodu musi być ograniczona do 30 znaków!");
+                wynik = false;
+                return wynik;
+            }
+            if (txtmodel.Text.Length > 30)
+            {
+                MessageBox.Show("Wprowadzony model samochodu musi być ograniczony do 30 znaków!");
+                wynik = false;
+                return wynik;
+            }
+            double dpojemnosc;
+            if (Double.TryParse(txtpojemnosc.Text, out dpojemnosc))
+            {
+                if (dpojemnosc < 0 || dpojemnosc > 100)
+                {
+                    MessageBox.Show("Wprowadź poprawną pojemność silnika w litrach!");
+                    wynik = false;
+                    return wynik;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Pojemność silnika musi być liczbą!");
+                wynik = false;
+                return wynik;
+            }
+            double dmoc;
+            if (Double.TryParse(txtmoc.Text, out dmoc))
+            {
+                if (dmoc < 0 || dmoc > 3000)
+                {
+                    MessageBox.Show("Wprowadź poprawną moc silnika w koniach mechanicznych!");
+                    wynik = false;
+                    return wynik;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Moc silnika musi być liczbą!");
+                wynik = false;
+                return wynik;
+            }
+            double drok;
+            if (Double.TryParse(txtrok.Text, out drok))
+            {
+                if (drok < 1900 || drok > 2200)
+                {
+                    MessageBox.Show("Wprowadź poprawny rok produkcji samochodu!");
+                    wynik = false;
+                    return wynik;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Rok produkcji musi być liczbą!");
+                wynik = false;
+                return wynik;
+            }
+            return wynik;
+        }
         private void txtzaplacone_TextChanged(object sender, EventArgs e)
         {
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Windows.Forms.VisualStyles;
+using System.Reflection;
 
 namespace Eco_Driving_App
 {
@@ -61,59 +62,54 @@ namespace Eco_Driving_App
         {
             try
             {
-                if(MessageBox.Show("Czy na pewno chcesz dodać nowy raport?","Dodawanie raportu",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+                if (MessageBox.Show("Czy na pewno chcesz dodać nowy raport?", "Dodawanie raportu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string zalogowany = login.get_zalogowany();
                     string model = login.get_model();
-                    double przejechane = 0;                    
-                    try
-                    {
-                        command = new SqlCommand("SELECT TOP 1 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY ID DESC", connect);
-                        connect.Open();
-                        SqlDataReader reader = command.ExecuteReader();
+                    double przejechane = 0;
 
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                przejechane = Convert.ToDouble(reader["przebieg"]);
-                            }
-                        }
-                        reader.Close();
-                        connect.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        connect.Close();
-                        MessageBox.Show(ex.Message);
-                        throw;
-                    }
-                    command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,marka,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena,przejechane,spalanie)VALUES(@wlasciciel,@marka,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena,@przejechane,@spalanie)", connect);
-                    command.Parameters.AddWithValue("@wlasciciel", zalogowany);
-                    command.Parameters.AddWithValue("@marka", model);
-                    command.Parameters.AddWithValue("@zatankowane", Convert.ToDouble(txtzatankowane.Text));
-                    command.Parameters.AddWithValue("@zaplacone", Convert.ToDouble(txtzaplacone.Text));
-                    command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
-                    command.Parameters.AddWithValue("@paliwo", cbpaliwo.Text);
-                    command.Parameters.AddWithValue("@data", dtdata.Value);
-                    command.Parameters.AddWithValue("@dopelna", cbdopelna.Checked);
-                    command.Parameters.AddWithValue("@cena", Convert.ToDouble(String.Format("{0:N2}", (Convert.ToDouble(txtzaplacone.Text)/ (Convert.ToDouble(txtzatankowane.Text))))));
-                    if ((Convert.ToDouble(txtprzebieg.Text) - przejechane) > 30000)
-                    {
-                        command.Parameters.AddWithValue("@przejechane", 0);
-                        command.Parameters.AddWithValue("@spalanie", 0);
-                    }
-                    else
-                    {
-                        command.Parameters.AddWithValue("@przejechane", Convert.ToDouble(txtprzebieg.Text) - przejechane);
-                        command.Parameters.AddWithValue("@spalanie", Convert.ToDouble(String.Format("{0:N2}", (100 * Convert.ToDouble(txtzatankowane.Text) / (Convert.ToDouble(txtprzebieg.Text) - przejechane)))));
-                    }
+                    command = new SqlCommand("SELECT TOP 1 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY ID DESC", connect);
                     connect.Open();
-                    command.ExecuteNonQuery();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            przejechane = Convert.ToDouble(reader["przebieg"]);
+                        }
+                    }
+                    reader.Close();
                     connect.Close();
-                    MessageBox.Show("Raport został pomyślnie wprowadzony!");
-                    Clear();
-                    pokazraport();
+                    if (sprawdz_dane())
+                    {
+                        command = new SqlCommand("INSERT INTO [Tankowanie](wlasciciel,marka,zatankowane,zaplacone,przebieg,paliwo,data,dopelna,cena,przejechane,spalanie)VALUES(@wlasciciel,@marka,@zatankowane,@zaplacone,@przebieg,@paliwo,@data,@dopelna,@cena,@przejechane,@spalanie)", connect);
+                        command.Parameters.AddWithValue("@wlasciciel", zalogowany);
+                        command.Parameters.AddWithValue("@marka", model);
+                        command.Parameters.AddWithValue("@zatankowane", Convert.ToDouble(txtzatankowane.Text));
+                        command.Parameters.AddWithValue("@zaplacone", Convert.ToDouble(txtzaplacone.Text));
+                        command.Parameters.AddWithValue("@przebieg", txtprzebieg.Text);
+                        command.Parameters.AddWithValue("@paliwo", cbpaliwo.Text);
+                        command.Parameters.AddWithValue("@data", dtdata.Value);
+                        command.Parameters.AddWithValue("@dopelna", cbdopelna.Checked);
+                        command.Parameters.AddWithValue("@cena", Convert.ToDouble(String.Format("{0:N2}", (Convert.ToDouble(txtzaplacone.Text) / (Convert.ToDouble(txtzatankowane.Text))))));
+                        if ((Convert.ToDouble(txtprzebieg.Text) - przejechane) > 30000)
+                        {
+                            command.Parameters.AddWithValue("@przejechane", 0);
+                            command.Parameters.AddWithValue("@spalanie", 0);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@przejechane", Convert.ToDouble(txtprzebieg.Text) - przejechane);
+                            command.Parameters.AddWithValue("@spalanie", Convert.ToDouble(String.Format("{0:N2}", (100 * Convert.ToDouble(txtzatankowane.Text) / (Convert.ToDouble(txtprzebieg.Text) - przejechane)))));
+                        }
+                        connect.Open();
+                        command.ExecuteNonQuery();
+                        connect.Close();
+                        MessageBox.Show("Raport został pomyślnie wprowadzony!");
+                        Clear();
+                        pokazraport();
+                    }
                 }
             }
             catch (Exception ex)
@@ -122,6 +118,7 @@ namespace Eco_Driving_App
                 MessageBox.Show(ex.Message);
                 throw;
             }
+
         }
         private void btn_czyszczenie_Click(object sender, EventArgs e)
         {
@@ -129,6 +126,80 @@ namespace Eco_Driving_App
             connect.Open();
             command.ExecuteNonQuery();
             connect.Close();
+        }
+        private bool sprawdz_dane()
+        {
+            bool wynik = true;
+            double dzatankowane;
+            if (Double.TryParse(txtzatankowane.Text, out dzatankowane))
+            {
+                if (dzatankowane < 0 || dzatankowane > 2000)
+                {
+                    MessageBox.Show("Ilość zatankowanego paliwa musi się zawierać w przedziale 0 - 2000!");
+                    wynik = false;
+                    return wynik;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ilość zatankowanego paliwa musi być liczbą!");
+                wynik = false;
+                return wynik;
+            }
+            double dzaplacone;
+            if (Double.TryParse(txtzaplacone.Text, out dzaplacone))
+            {
+                if (dzaplacone < 0 || dzaplacone > 20000)
+                {
+                    MessageBox.Show("Zapłacona kwota musi się zawierać w przedziale 0 - 20000!");
+                    wynik = false;
+                    return wynik;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Zapłacona kwota musi być liczbą!");
+                wynik = false;
+                return wynik;
+            }
+            if (dtdata.Value > DateTime.Now)
+            {
+                MessageBox.Show("Wprowadzona data nie może być z przyszłości!");
+                wynik = false;
+                return wynik;
+            }
+            string zalogowany = login.get_zalogowany();
+            string model = login.get_model();
+            double przejechane = 0;
+            command = new SqlCommand("SELECT TOP 1 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY ID DESC", connect);
+            connect.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    przejechane = Convert.ToDouble(reader["przebieg"]);
+                }
+            }
+            reader.Close();
+            connect.Close();
+            double dprzebieg;
+            if (Double.TryParse(txtprzebieg.Text, out dprzebieg))
+            {
+                if (dprzebieg < przejechane)
+                {
+                    MessageBox.Show("Przebieg nie może się zmniejszyć, wprowadź poprawną wartość!");
+                    wynik = false;
+                    return wynik;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Przebieg musi być liczbą!");
+                wynik = false;
+                return wynik;
+            }
+            return wynik;
         }
         private void dgvraporty_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
