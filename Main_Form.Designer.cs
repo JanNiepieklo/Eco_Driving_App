@@ -156,6 +156,7 @@
             // 
             // cbsamochod
             // 
+            this.cbsamochod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbsamochod.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbsamochod.FormattingEnabled = true;
             this.cbsamochod.Location = new System.Drawing.Point(282, 272);

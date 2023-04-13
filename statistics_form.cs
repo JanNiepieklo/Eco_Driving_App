@@ -26,12 +26,46 @@ namespace Eco_Driving_App
             zalogowany = login.get_zalogowany();
             model = login.get_model();
             txtmodel.Text = model;
-            odczyt_z_bazy(DateTime.Now.Year);
+            odczyt_roku();
+            cbrok.Text = (DateTime.Now.Year).ToString();
+            pokaz_statystyki();
         }
-        public void odczyt_z_bazy(int rok)
+        public void odczyt_roku()
         {
             try
             {
+                double rok = DateTime.Now.Year;
+                double rok2 = 0;
+                command = new SqlCommand("SELECT TOP 1 YEAR(data) FROM Tankowanie ORDER BY DATA ASC", connect);
+                connect.Open();
+                SqlDataReader reader3 = command.ExecuteReader();
+
+                if (reader3.HasRows)
+                {
+                    reader3.Read();
+                    rok2 = Convert.ToDouble(reader3[0]);
+                }
+                reader3.Close();
+                connect.Close();
+                do
+                {
+                    cbrok.Items.Add(Convert.ToString(rok2));
+                    rok2 += 1;
+                } while (rok2 <= rok);                
+            }
+            catch (Exception ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+        }
+        public void pokaz_statystyki()
+        {
+            try
+            {
+                double rok = Convert.ToDouble(cbrok.Text);
                 double suma1 = 0;
                 command = new SqlCommand("SELECT SUM(zaplacone) FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' AND YEAR(data) = '" + rok + "'", connect);
                 connect.Open();
@@ -68,7 +102,10 @@ namespace Eco_Driving_App
                 MessageBox.Show(ex.Message);
                 throw;
             }
-
+        }
+        private void cbrok_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pokaz_statystyki();
         }
     }
 }

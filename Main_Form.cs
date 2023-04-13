@@ -26,6 +26,7 @@ namespace Eco_Driving_App
             InitializeComponent();
             connect = new SqlConnection(sqlcon.connection());
             odczyt_z_bazy();
+            sprawdz_tabele();
         }
         public void odczyt_z_bazy()
         {
@@ -172,6 +173,39 @@ namespace Eco_Driving_App
                 throw;
             }
             txtmodel.Text = model;
+            sprawdz_tabele();
+        }
+        public void sprawdz_tabele()
+        {
+            try
+            {
+                double czypusta = 0;
+                command = new SqlCommand("SELECT CASE WHEN EXISTS(SELECT 1 FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "') THEN 0 ELSE 1 END AS IsEmpty", connect);
+                connect.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    czypusta = Convert.ToDouble(reader[0]);
+                }
+                reader.Close();
+                connect.Close();
+                if (czypusta == 1)
+                {
+                    button_statistics.Enabled = false;
+                }
+                else
+                {
+                    button_statistics.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -183,5 +217,6 @@ namespace Eco_Driving_App
         {
 
         }
+
     }
 }
