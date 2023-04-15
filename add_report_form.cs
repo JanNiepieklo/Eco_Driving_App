@@ -110,7 +110,6 @@ namespace Eco_Driving_App
                 MessageBox.Show(ex.Message);
                 throw;
             }
-
         }
         private bool sprawdz_dane()
         {
@@ -118,7 +117,7 @@ namespace Eco_Driving_App
             double dzatankowane;
             if (Double.TryParse(txtzatankowane.Text, out dzatankowane))
             {
-                if (dzatankowane < 0 || dzatankowane > 2000)
+                if (dzatankowane <= 0 || dzatankowane > 2000)
                 {
                     MessageBox.Show("Ilość zatankowanego paliwa musi się zawierać w przedziale 0 - 2000!");
                     wynik = false;
@@ -134,7 +133,7 @@ namespace Eco_Driving_App
             double dzaplacone;
             if (Double.TryParse(txtzaplacone.Text, out dzaplacone))
             {
-                if (dzaplacone < 0 || dzaplacone > 20000)
+                if (dzaplacone <= 0 || dzaplacone > 20000)
                 {
                     MessageBox.Show("Zapłacona kwota musi się zawierać w przedziale 0 - 20000!");
                     wynik = false;
@@ -155,7 +154,7 @@ namespace Eco_Driving_App
             }
             string zalogowany = login.get_zalogowany();
             string model = login.get_model();
-            double przejechane = 0;
+            double poprzedni_przebieg = 0;
             command = new SqlCommand("SELECT TOP 1 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY ID DESC", connect);
             connect.Open();
             SqlDataReader reader = command.ExecuteReader();
@@ -163,7 +162,7 @@ namespace Eco_Driving_App
             {
                 while (reader.Read())
                 {
-                    przejechane = Convert.ToDouble(reader["przebieg"]);
+                    poprzedni_przebieg = Convert.ToDouble(reader["przebieg"]);
                 }
             }
             reader.Close();
@@ -171,7 +170,7 @@ namespace Eco_Driving_App
             double dprzebieg;
             if (Double.TryParse(txtprzebieg.Text, out dprzebieg))
             {
-                if (dprzebieg < przejechane)
+                if (dprzebieg < poprzedni_przebieg)
                 {
                     MessageBox.Show("Przebieg nie może się zmniejszyć, wprowadź poprawną wartość!");
                     wynik = false;

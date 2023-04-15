@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Eco_Driving_App
 {
@@ -33,47 +34,31 @@ namespace Eco_Driving_App
                 }
                 reader.Close();
                 connect.Close();
-            }
-            catch (Exception ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-            try
-            {
+
                 command = new SqlCommand("SELECT * FROM Samochody WHERE wlasciciel = '" + zalogowany + "'", connect);
                 connect.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader2 = command.ExecuteReader();
 
-                if (reader.HasRows)
+                if (reader2.HasRows)
                 {
-                    while (reader.Read())
+                    while (reader2.Read())
                     {
-                        cbsamochod.Items.Add(Convert.ToString(reader["Model"]));
+                        cbsamochod.Items.Add(Convert.ToString(reader2["Model"]));
                     }
                 }
-                reader.Close();
+                reader2.Close();
                 connect.Close();
-            }
-            catch (Exception ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-            try
-            {
+
                 command = new SqlCommand("SELECT * FROM Samochody WHERE wlasciciel = '" + zalogowany + "' AND wybrany = 1", connect);
                 connect.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader3 = command.ExecuteReader();
 
-                if (reader.HasRows)
+                if (reader3.HasRows)
                 {
-                    reader.Read();
-                    model = Convert.ToString(reader["Model"]);
+                    reader3.Read();
+                    model = Convert.ToString(reader3["Model"]);
                 }
-                reader.Close();
+                reader3.Close();
                 connect.Close();
             }
             catch (Exception ex)
@@ -122,28 +107,12 @@ namespace Eco_Driving_App
                 connect.Open();
                 command.ExecuteNonQuery();
                 connect.Close();
-            }
-            catch (Exception ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-            try
-            {
+
                 command = new SqlCommand("UPDATE [Samochody] SET wybrany = 1 WHERE wlasciciel = '" + zalogowany + "' AND model = '" + cbsamochod.Text + "'", connect);
                 connect.Open();
                 command.ExecuteNonQuery();
                 connect.Close();
-            }
-            catch (Exception ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-            try
-            {
+
                 command = new SqlCommand("SELECT * FROM Samochody WHERE wlasciciel = '" + zalogowany + "' AND wybrany = 1", connect);
                 connect.Open();
                 SqlDataReader reader = command.ExecuteReader();

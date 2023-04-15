@@ -88,22 +88,22 @@ namespace Eco_Driving_App
         private bool sprawdz_dane()
         {
             bool wynik = true;
-            if (txtmarka.Text.Length > 30)
+            if (txtmarka.Text.Length > 30 || txtmarka.Text.Length == 0)
             {
-                MessageBox.Show("Wprowadzona marka samochodu musi być ograniczona do 30 znaków!");
+                MessageBox.Show("Wprowadzona marka samochodu musi być ograniczona do 30 znaków i nie może być pusta!");
                 wynik = false;
                 return wynik;
             }
-            if (txtmodel.Text.Length > 30)
+            if (txtmodel.Text.Length > 30 || txtmodel.Text.Length == 0)
             {
-                MessageBox.Show("Wprowadzony model samochodu musi być ograniczony do 30 znaków!");
+                MessageBox.Show("Wprowadzony model samochodu musi być ograniczony do 30 znaków i nie może być pusty!");
                 wynik = false;
                 return wynik;
             }
             double dpojemnosc;
             if (Double.TryParse(txtpojemnosc.Text, out dpojemnosc))
             {
-                if (dpojemnosc < 0 || dpojemnosc > 100)
+                if (dpojemnosc <= 0 || dpojemnosc > 100)
                 {
                     MessageBox.Show("Wprowadź poprawną pojemność silnika w litrach!");
                     wynik = false;
@@ -119,7 +119,7 @@ namespace Eco_Driving_App
             double dmoc;
             if (Double.TryParse(txtmoc.Text, out dmoc))
             {
-                if (dmoc < 0 || dmoc > 3000)
+                if (dmoc <= 0 || dmoc > 3000)
                 {
                     MessageBox.Show("Wprowadź poprawną moc silnika w koniach mechanicznych!");
                     wynik = false;

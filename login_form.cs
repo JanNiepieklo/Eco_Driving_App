@@ -76,11 +76,6 @@ namespace Eco_Driving_App
                 throw;
             }
         }
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-            Application.Exit();
-        }
         private bool sprawdz_dane()
         {
             bool wynik = true;
@@ -109,6 +104,11 @@ namespace Eco_Driving_App
                 return wynik;
             }
             return wynik;
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Exit();
         }
         private void label1_Click(object sender, EventArgs e)
         {
