@@ -158,6 +158,14 @@ namespace Eco_Driving_App
                 {
                     button_statistics.Enabled = true;
                 }
+                if (cbsamochod.SelectedIndex == -1)
+                {
+                    button_reports.Enabled = false;
+                }
+                else
+                {
+                    button_reports.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
