@@ -36,7 +36,7 @@ namespace Eco_Driving_App
             {
                 double rok = DateTime.Now.Year;
                 double rok2 = 0;
-                command = new SqlCommand("SELECT TOP 1 YEAR(data) FROM Tankowanie ORDER BY DATA ASC", connect);
+                command = new SqlCommand("SELECT TOP 1 YEAR(data) FROM Tankowanie ORDER BY data ASC", connect);
                 connect.Open();
                 SqlDataReader reader3 = command.ExecuteReader();
 
@@ -59,29 +59,37 @@ namespace Eco_Driving_App
                 MessageBox.Show(ex.Message);
                 throw;
             }
-
         }
         public void pokaz_statystyki()
         {
             try
             {
                 double rok = Convert.ToDouble(cbrok.Text);
-                double suma1 = 0;
-                command = new SqlCommand("SELECT SUM(zaplacone) FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' AND YEAR(data) = '" + rok + "'", connect);
+                double przejechane = 0;
+                double przebiegmin = 0;
+                double przebiegmax = 0;
+                double zatankowane = 0;
+                double zatankowane1 = 0;
+                double spalanie = 0;
+                double koszt1 = 0;
+                double koszt2 = 0;
+                double koszt = 0;
+                double koszt1r = 0;
+
+                command = new SqlCommand("SELECT SUM(zaplacone), SUM(zatankowane) FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' AND YEAR(data) = '" + rok + "'", connect);
                 connect.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    suma1 = Convert.ToDouble(reader[0]);
+                    koszt1 = Convert.ToDouble(reader[0]);
+                    zatankowane = Convert.ToDouble(reader[1]);
                 }
                 reader.Close();
                 connect.Close();
-                suma1 = Convert.ToDouble(String.Format("{0:N2}", suma1));
-                txtwydane1.Text = suma1.ToString();
+                txtwydane1.Text = String.Format("{0:N2}", koszt1);
 
-                double suma2 = 0;
                 command = new SqlCommand("SELECT SUM(zaplacone) FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND YEAR(data) = '" + rok + "'", connect);
                 connect.Open();
                 SqlDataReader reader2 = command.ExecuteReader();
@@ -89,12 +97,71 @@ namespace Eco_Driving_App
                 if (reader2.HasRows)
                 {
                     reader2.Read();
-                    suma2 = Convert.ToDouble(reader2[0]);
+                    koszt2 = Convert.ToDouble(reader2[0]);
                 }
                 reader2.Close();
                 connect.Close();
-                suma2 = Convert.ToDouble(String.Format("{0:N2}", suma2));
-                txtwydanewszystkie.Text = suma2.ToString();
+                txtwydanewszystkie.Text = String.Format("{0:N2}", koszt2);
+
+
+                command = new SqlCommand("SELECT TOP 1 przebieg, zatankowane, zaplacone FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' AND YEAR(data) = '" + rok + "' ORDER BY przebieg ASC", connect);
+                connect.Open();
+                SqlDataReader reader3 = command.ExecuteReader();
+
+                if (reader3.HasRows)
+                {
+                    reader3.Read();
+                    przebiegmin = Convert.ToDouble(reader3[0]);
+                    zatankowane1 = Convert.ToDouble(reader3[1]);
+                    koszt1r = Convert.ToDouble(reader3[2]);
+                }
+                reader3.Close();
+                connect.Close();
+
+                command = new SqlCommand("SELECT TOP 1 przebieg FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' AND YEAR(data) = '" + rok + "' ORDER BY przebieg DESC", connect);
+                connect.Open();
+                SqlDataReader reader4 = command.ExecuteReader();
+
+                if (reader4.HasRows)
+                {
+                    reader4.Read();
+                    przebiegmax = Convert.ToDouble(reader4[0]);
+                }
+                reader4.Close();
+                connect.Close();
+
+                przejechane = przebiegmax - przebiegmin;
+                spalanie = 100 * (zatankowane - zatankowane1) / przejechane;
+                txtspalanie.Text = String.Format("{0:N2}", spalanie);
+                koszt = 100 * (koszt1 - koszt1r) / przejechane;
+                txtkoszt.Text = String.Format("{0:N2}", koszt);
+
+                //command = new SqlCommand("SELECT SUM(zatankowane) FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' AND YEAR(data) = '" + rok + "'", connect);
+                //connect.Open();
+                //SqlDataReader reader5 = command.ExecuteReader();
+
+                //if (reader5.HasRows)
+                //{
+                //    reader5.Read();
+                //    zatankowane = Convert.ToDouble(reader5[0]);
+                //}
+                //reader5.Close();
+                //connect.Close();
+
+                //command = new SqlCommand("SELECT TOP 1 zatankowane, zaplacone  FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' AND YEAR(data) = '" + rok + "' ORDER BY przebieg ASC", connect);
+                //connect.Open();
+                //SqlDataReader reader6 = command.ExecuteReader();
+
+                //if (reader6.HasRows)
+                //{
+                //    reader6.Read();
+                //    zatankowane1 = Convert.ToDouble(reader6[0]);
+                //    koszt1r = Convert.ToDouble(reader6[1]);
+                //}
+                //reader6.Close();
+                //connect.Close();
+
+
             }
             catch (Exception ex)
             {

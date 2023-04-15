@@ -133,9 +133,9 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.Location = new System.Drawing.Point(555, 195);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 37);
+            this.label8.Size = new System.Drawing.Size(194, 37);
             this.label8.TabIndex = 32;
-            this.label8.Text = "zł";
+            this.label8.Text = "litrów/100km";
             // 
             // label9
             // 
@@ -163,9 +163,9 @@
             this.txtwydanewszystkie.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtwydanewszystkie.Location = new System.Drawing.Point(388, 351);
             this.txtwydanewszystkie.Name = "txtwydanewszystkie";
-            this.txtwydanewszystkie.Size = new System.Drawing.Size(161, 37);
+            this.txtwydanewszystkie.Size = new System.Drawing.Size(33, 37);
             this.txtwydanewszystkie.TabIndex = 35;
-            this.txtwydanewszystkie.Text = "000000000";
+            this.txtwydanewszystkie.Text = "0";
             this.txtwydanewszystkie.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtkoszt
@@ -174,9 +174,9 @@
             this.txtkoszt.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtkoszt.Location = new System.Drawing.Point(388, 246);
             this.txtkoszt.Name = "txtkoszt";
-            this.txtkoszt.Size = new System.Drawing.Size(161, 37);
+            this.txtkoszt.Size = new System.Drawing.Size(33, 37);
             this.txtkoszt.TabIndex = 36;
-            this.txtkoszt.Text = "000000000";
+            this.txtkoszt.Text = "0";
             this.txtkoszt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtspalanie
@@ -185,9 +185,9 @@
             this.txtspalanie.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtspalanie.Location = new System.Drawing.Point(388, 195);
             this.txtspalanie.Name = "txtspalanie";
-            this.txtspalanie.Size = new System.Drawing.Size(161, 37);
+            this.txtspalanie.Size = new System.Drawing.Size(33, 37);
             this.txtspalanie.TabIndex = 37;
-            this.txtspalanie.Text = "000000000";
+            this.txtspalanie.Text = "0";
             this.txtspalanie.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtwydane1
@@ -196,9 +196,9 @@
             this.txtwydane1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtwydane1.Location = new System.Drawing.Point(388, 145);
             this.txtwydane1.Name = "txtwydane1";
-            this.txtwydane1.Size = new System.Drawing.Size(161, 37);
+            this.txtwydane1.Size = new System.Drawing.Size(33, 37);
             this.txtwydane1.TabIndex = 38;
-            this.txtwydane1.Text = "000000000";
+            this.txtwydane1.Text = "0";
             this.txtwydane1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
