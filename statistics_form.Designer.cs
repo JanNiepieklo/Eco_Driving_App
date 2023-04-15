@@ -45,6 +45,7 @@
             this.txtwydane1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.cbrok = new System.Windows.Forms.ComboBox();
+            this.btnanuluj = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label5
@@ -222,11 +223,27 @@
             this.cbrok.TabIndex = 41;
             this.cbrok.SelectedIndexChanged += new System.EventHandler(this.cbrok_SelectedIndexChanged);
             // 
+            // btnanuluj
+            // 
+            this.btnanuluj.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnanuluj.FlatAppearance.BorderSize = 0;
+            this.btnanuluj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnanuluj.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnanuluj.ForeColor = System.Drawing.Color.White;
+            this.btnanuluj.Location = new System.Drawing.Point(648, 386);
+            this.btnanuluj.Name = "btnanuluj";
+            this.btnanuluj.Size = new System.Drawing.Size(118, 41);
+            this.btnanuluj.TabIndex = 42;
+            this.btnanuluj.Text = "Anuluj";
+            this.btnanuluj.UseVisualStyleBackColor = false;
+            this.btnanuluj.Click += new System.EventHandler(this.btnanuluj_Click);
+            // 
             // statistics_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnanuluj);
             this.Controls.Add(this.cbrok);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtwydane1);
@@ -270,5 +287,6 @@
         private System.Windows.Forms.Label txtwydane1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbrok;
+        private System.Windows.Forms.Button btnanuluj;
     }
 }
