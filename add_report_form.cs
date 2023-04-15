@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Windows.Forms.VisualStyles;
-using System.Reflection;
 
 namespace Eco_Driving_App
 {
@@ -120,13 +112,6 @@ namespace Eco_Driving_App
             }
 
         }
-        private void btn_czyszczenie_Click(object sender, EventArgs e)
-        {
-            command = new SqlCommand("DELETE FROM Tankowanie WHERE marka = 'Civic'", connect);
-            connect.Open();
-            command.ExecuteNonQuery();
-            connect.Close();
-        }
         private bool sprawdz_dane()
         {
             bool wynik = true;
@@ -200,6 +185,13 @@ namespace Eco_Driving_App
                 return wynik;
             }
             return wynik;
+        }
+        private void btn_czyszczenie_Click(object sender, EventArgs e)
+        {
+            command = new SqlCommand("DELETE FROM Tankowanie WHERE marka = 'CivicEM2'", connect);
+            connect.Open();
+            command.ExecuteNonQuery();
+            connect.Close();
         }
         private void dgvraporty_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
