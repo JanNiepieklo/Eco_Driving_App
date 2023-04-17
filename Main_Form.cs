@@ -48,7 +48,7 @@ namespace Eco_Driving_App
                 }
                 reader2.Close();
                 connect.Close();
-
+                
                 command = new SqlCommand("SELECT * FROM Samochody WHERE wlasciciel = '" + zalogowany + "' AND wybrany = 1", connect);
                 connect.Open();
                 SqlDataReader reader3 = command.ExecuteReader();
@@ -69,6 +69,7 @@ namespace Eco_Driving_App
             }
             txtuzytkownik.Text = zalogowany;
             txtmodel.Text = model;
+            cbsamochod.Text = model;
         }
         public string get_zalogowany()
         {

@@ -35,6 +35,7 @@ namespace Eco_Driving_App
         }
         private void btnanuluj_Click(object sender, EventArgs e)
         {
+            login.sprawdz_tabele();
             this.Hide();
         }
         public void Clear()
@@ -146,15 +147,11 @@ namespace Eco_Driving_App
                 wynik = false;
                 return wynik;
             }
-            if (dtdata.Value > DateTime.Now)
-            {
-                MessageBox.Show("Wprowadzona data nie może być z przyszłości!");
-                wynik = false;
-                return wynik;
-            }
+
             string zalogowany = login.get_zalogowany();
             string model = login.get_model();
             double poprzedni_przebieg = 0;
+            DateTime poprzednia_data = new DateTime();
             command = new SqlCommand("SELECT TOP 1 * FROM Tankowanie WHERE wlasciciel = '" + zalogowany + "' AND marka = '" + model + "' ORDER BY ID DESC", connect);
             connect.Open();
             SqlDataReader reader = command.ExecuteReader();
@@ -163,10 +160,25 @@ namespace Eco_Driving_App
                 while (reader.Read())
                 {
                     poprzedni_przebieg = Convert.ToDouble(reader["przebieg"]);
+                    poprzednia_data = Convert.ToDateTime(reader["data"]);
                 }
             }
             reader.Close();
             connect.Close();
+
+            if (dtdata.Value > DateTime.Now)
+            {
+                MessageBox.Show("Wprowadzona data nie może być z przyszłości!");
+                wynik = false;
+                return wynik;
+            }
+            else if (dtdata.Value < poprzednia_data)
+            {
+                MessageBox.Show("Wprowadzona data nie może być wcześniejsza od poprzedniej wprowadzonej!");
+                wynik = false;
+                return wynik;
+            }
+
             double dprzebieg;
             if (Double.TryParse(txtprzebieg.Text, out dprzebieg))
             {
@@ -187,7 +199,7 @@ namespace Eco_Driving_App
         }
         private void btn_czyszczenie_Click(object sender, EventArgs e)
         {
-            command = new SqlCommand("DELETE FROM Tankowanie WHERE marka = 'CivicEM2'", connect);
+            command = new SqlCommand("DELETE FROM Tankowanie WHERE wlasciciel = 'kierowca'", connect);
             connect.Open();
             command.ExecuteNonQuery();
             connect.Close();

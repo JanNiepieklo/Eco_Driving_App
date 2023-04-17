@@ -265,7 +265,6 @@
             this.btn_czyszczenie.TabIndex = 19;
             this.btn_czyszczenie.Text = "Czyszczenie tabel";
             this.btn_czyszczenie.UseVisualStyleBackColor = false;
-            this.btn_czyszczenie.Visible = false;
             this.btn_czyszczenie.Click += new System.EventHandler(this.btn_czyszczenie_Click);
             // 
             // add_report_form
